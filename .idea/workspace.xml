@@ -25,7 +25,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11224fc7-fc35-4372-9a6a-47e8ed6caaf3" name="Default Changelist" comment="" />
+    <list default="true" id="11224fc7-fc35-4372-9a6a-47e8ed6caaf3" name="Default Changelist" comment="basic structure for html">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1605214344942</updated>
-      <workItem from="1605214346651" duration="1925000" />
+      <workItem from="1605214346651" duration="2855000" />
     </task>
     <servers />
   </component>
@@ -86,6 +89,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="basic structure for html" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic structure for html" />
   </component>
   <component name="WindowStateProjectService">
     <state x="424" y="377" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605215011764">
