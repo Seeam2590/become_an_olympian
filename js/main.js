@@ -10,12 +10,12 @@ let url5 = 'data/events.csv';
 let url6 = 'data/noc_regions.csv';
 
 Promise.all([
-    d3.json(url1),
-    d3.json(url2),
-    d3.json(url3),
-    d3.json(url4),
-    d3.json(url5),
-    d3.json(url6),
+    d3.csv(url1),
+    d3.csv(url2),
+    d3.csv(url3),
+    d3.csv(url4),
+    d3.csv(url5),
+    d3.csv(url6),
 ]).then(gettingStarted)
 
 // function that gets called once data has been fetched.
@@ -23,12 +23,10 @@ Promise.all([
 // From the data, we're creating the final data structure we need and create a new instance of the StationMap
 function gettingStarted(data) {
     let [athlete_events, athletes, countries, country_extended, events, noc_regions] = data;
+
     // log data
     console.log(country_extended);
 
-    // Display number of stations in DOM
-    $("#station-count").html(stations.length);
-
     // Instantiate visualization object (bike-sharing stations in Boston)
-    usaViz = new usaViz("usaViz", country_extended);
+    usaViz = new UsaViz("usaViz", country_extended);
 }
