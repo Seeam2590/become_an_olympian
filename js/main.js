@@ -24,8 +24,8 @@ Promise.all([
 function gettingStarted(data) {
     let [athlete_events, athletes, countries, country_extended, events, noc_regions] = data;
 
-    // log data
-    console.log(country_extended);
+    // log data for checking
+    // console.log(country_extended);
 
     // Instantiate visualization object (bike-sharing stations in Boston)
     usaViz = new UsaViz("usaViz", country_extended);
