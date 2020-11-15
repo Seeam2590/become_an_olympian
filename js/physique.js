@@ -23,6 +23,8 @@ class PhysiqueVis {
     initVis () {
         let vis = this;
 
+        console.log(vis.displayData)
+
 
 
 
