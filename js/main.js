@@ -29,4 +29,6 @@ function gettingStarted(data) {
 
     // Instantiate visualization object (bike-sharing stations in Boston)
     usaViz = new UsaViz("usaViz", country_extended);
+
+    physiqueVis = new PhysiqueVis("physiqueVis", athlete_events)
 }
