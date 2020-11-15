@@ -10,7 +10,9 @@ class PhysiqueVis {
     /*
      *  Constructor method
      */
-    constructor() {
+    constructor(parentElement, displayData) {
+        this.parentElement = parentElement;
+        this.displayData = displayData;
 
 
         this.initVis();
