@@ -60,15 +60,34 @@
             </div>
         </section>
         <!-- Projects-->
-        <section class="projects-section bg-light" id="projects">
+        <section class="projects-section bg-light" id="projects" style="padding-top: 40px">
             <div class="container">
                 <!-- Featured Project Row -->
-                <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-                    <div class="col-xl-8 col-lg-7" id="usaViz" style="height: 70vh"></div>
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="featured-text text-center text-lg-left">
-                            <h4>US leads in Olympic Medals</h4>
-                            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+                <div id="stateCarousel" class="carousel slide" data-ride="carousel" style="height: 70vh; width: 100%">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+                                <div class="col-xl-8 col-lg-7" id="usaViz" style="height: 70vh"></div>
+                                <div class="col-xl-4 col-lg-5">
+                                    <div class="featured-text text-center text-lg-left">
+                                        <h4>US leads in Olympic Medals</h4>
+                                        <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+                                    </div>
+                                    <button type="button" class="btn btn-info" style="margin-top: 20px; padding-top: 10px; padding-bottom: 10px" onclick="switchView()">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+                                <div class="col-xl-8 col-lg-7" id="" style="height: 70vh"></div>
+                                <div class="col-xl-4 col-lg-5">
+                                    <div class="featured-text text-center text-lg-left">
+                                        <h4>US leads in Olympic Medals</h4>
+                                        <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+                                    </div>
+                                    <button type="button" class="btn btn-info" style="margin-top: 20px; padding-top: 10px; padding-bottom: 10px" onclick="switchView()">Next</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -147,6 +166,7 @@
         <script src="https://d3js.org/d3.v6.min.js"></script>
         <!-- Our d3 scripts-->
         <script src="js/main.js"></script>
+        <script src="js/helpers.js"></script>
         <script src="js/usaViz.js"></script>
     </body>
 </html>
