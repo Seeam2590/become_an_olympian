@@ -25,6 +25,15 @@ class PhysiqueVis {
 
         console.log(vis.displayData)
 
+        vis.margin = {top: 20, right: 20, bottom: 20, left: 20};
+        vis.width = $('#' + vis.parentElement).width() - vis.margin.left - vis.margin.right;
+        vis.height = $('#' + vis.parentElement).height() - vis.margin.top - vis.margin.bottom;
+
+        vis.svg = d3.select("#" + vis.parentElement).append("svg")
+            .attr("width", vis.width)
+            .attr("height", vis.height)
+            .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
+
 
 
 
