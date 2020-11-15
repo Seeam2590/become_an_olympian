@@ -34,6 +34,13 @@ class PhysiqueVis {
             .attr("height", vis.height)
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
+        vis.svg.append("rect")
+            .attr("x", 30)
+            .attr("y", 30)
+            .attr("width", 20)
+            .attr("height", 20)
+            .attr("fill", "darkblue")
+
 
 
 
