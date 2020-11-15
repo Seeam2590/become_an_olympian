@@ -1,5 +1,6 @@
 // Variable for the visualization instance
 let usaViz;
+let physiqueVis;
 
 // Paths to data
 let url1 = 'data/athlete_events.csv';
