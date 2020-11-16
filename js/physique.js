@@ -5,9 +5,6 @@
  *  @param _data            -- Array with all stations of the bike-sharing network
  */
 
-let formatDate = d3.timeFormat("%Y");
-let parseDate = d3.timeParse("%Y");
-
 class PhysiqueVis {
 
     /*
@@ -68,7 +65,19 @@ class PhysiqueVis {
     wrangleData () {
         let vis = this;
 
-        vis.medallers = vis.displayData.filter(function(d){return d.Medal == "Gold" || d.Medal == "Silver" || d.Medal == "Bronze";})
+        let parseDate = d3.timeParse("%Y");
+
+        vis.full_olympics = [];
+
+        vis.displayData.forEach( row => {
+            // and push rows with proper dates into filteredData
+            row.Year = parseDate(row.Year)
+            vis.full_olympics.push(row)
+        });
+
+        console.log("full_olympics", vis.full_olympics)
+
+        vis.medallers = vis.full_olympics.filter(function(d){return d.Medal == "Gold" || d.Medal == "Silver" || d.Medal == "Bronze";})
         console.log(vis.medallers)
         vis.updateVis();
     }
