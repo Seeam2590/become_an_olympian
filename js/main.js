@@ -38,5 +38,5 @@ function gettingStarted(data) {
     usaViz = new UsaViz("usaViz", country_extended);
     physiqueVis = new PhysiqueVis("physiqueVis", athlete_events);
     ageViz = new AgeViz("ageViz", athlete_events);
-    usaMapViz = new UsaMapViz("usaMapViz", world);
+    usaMapViz = new UsaMapViz("usaMapViz", world, country_extended);
 }

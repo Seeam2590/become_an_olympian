@@ -9,9 +9,10 @@ class UsaMapViz {
     /*
      *  Constructor method
      */
-    constructor(parentElement, data) {
+    constructor(parentElement, geo, data) {
         this.parentElement = parentElement;
-        this.worldGeo = data;
+        this.worldGeo = geo;
+        this.data = data;
         this.initVis();
     }
 
@@ -38,18 +39,6 @@ class UsaMapViz {
         vis.projection = d3.geoNaturalEarth()
             .scale(vis.width / 1.3 / Math.PI)
             .translate([vis.width / 2, vis.height / 2])
-
-        // Draw the map
-        vis.svg.append("g")
-            .selectAll("path")
-            .data(vis.worldGeo.features)
-            .enter().append("path")
-            .attr("fill", "#fff")
-            .attr("d", d3.geoPath()
-                .projection(vis.projection)
-            )
-            .style("stroke", "#000")
-
         vis.wrangleData();
     }
 
@@ -59,11 +48,38 @@ class UsaMapViz {
      */
     wrangleData () {
         let vis = this;
+
+        vis.data.forEach(function (d) {
+            d.athletes = +d.athletes;
+        });
+
+        vis.maxAthletes = vis.data.reduce((a,b)=>a.athletes>b.athletes?a:b).athletes;
         vis.updateVis();
     }
 
     updateVis() {
         let vis = this;
+
+        // Color scale
+        vis.color = d3.scaleSequential(d3.interpolateGreens)
+            .domain([0, vis.maxAthletes])
+
+        // Draw the map
+        vis.svg.append("g")
+            .selectAll("path")
+            .data(vis.worldGeo.features)
+            .enter().append("path")
+            .attr("fill", d => {
+                var info = vis.data.filter(e => e.code == d.id);
+                if(info.length > 0)
+                    return vis.color(info[0].athletes)
+                else
+                    return "#fff";
+            })
+            .attr("d", d3.geoPath()
+                .projection(vis.projection)
+            )
+            .style("stroke", "#000")
     }
 }
 

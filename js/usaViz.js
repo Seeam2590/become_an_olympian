@@ -74,7 +74,7 @@ class UsaViz {
 
         vis.displayData = vis.data.sort((a, b) => b.total - a.total).slice(0, 10);
         vis.displayData = vis.displayData.sort((a, b) => a.total - b.total);
-        console.log(vis.displayData)
+        // console.log(vis.displayData)
 
         // Update the visualization
         vis.updateVis();
