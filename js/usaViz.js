@@ -104,7 +104,7 @@ class UsaViz {
             .attr("x", 2)
             .attr("y", d => vis.y(d.country))
             .attr("width", d => vis.x(d.total))
-            .attr("height", vis.y.bandwidth())
+            .attr("height", vis.y.bandwidth());
 
         vis.gold.exit().remove();
 
