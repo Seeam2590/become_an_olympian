@@ -23,8 +23,6 @@ class PhysiqueVis {
     initVis () {
         let vis = this;
 
-        console.log(vis.displayData)
-
         vis.margin = {top: 20, right: 20, bottom: 20, left: 20};
         vis.width = $('#' + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = $('#' + vis.parentElement).height() - vis.margin.top - vis.margin.bottom;
@@ -34,12 +32,25 @@ class PhysiqueVis {
             .attr("height", vis.height)
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
-        vis.svg.append("rect")
-            .attr("x", 30)
-            .attr("y", 30)
-            .attr("width", 20)
-            .attr("height", 20)
-            .attr("fill", "darkblue")
+        vis.x = d3.scaleTime()
+            .range([0, vis.width]);
+
+        vis.y = d3.scaleLinear()
+            .range([vis.height, 0]);
+
+
+        vis.xAxis = d3.axisBottom()
+            .scale(vis.x);
+
+        vis.yAxis = d3.axisLeft()
+            .scale(vis.y);
+
+        vis.svg.append("g")
+            .attr("class", "x-axis axis")
+            .attr("transform", "translate(0," + vis.height + ")");
+
+        vis.svg.append("g")
+            .attr("class", "y-axis axis");
 
 
 
@@ -54,6 +65,20 @@ class PhysiqueVis {
     wrangleData () {
         let vis = this;
 
+        let parseDate = d3.timeParse("%Y");
+
+        vis.full_olympics = [];
+
+        vis.displayData.forEach( row => {
+            // and push rows with proper dates into filteredData
+            row.Year = parseDate(row.Year)
+            vis.full_olympics.push(row)
+        });
+
+        console.log("full_olympics", vis.full_olympics)
+
+        vis.medallers = vis.full_olympics.filter(function(d){return d.Medal == "Gold" || d.Medal == "Silver" || d.Medal == "Bronze";})
+        console.log(vis.medallers)
         vis.updateVis();
     }
 

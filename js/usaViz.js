@@ -49,6 +49,11 @@ class UsaViz {
         vis.svg.append("g")
             .attr("class", "y-axis axis");
 
+        // append tooltip
+        vis.tooltip = d3.select("#" + vis.parentElement).append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
         vis.wrangleData();
     }
 
@@ -81,31 +86,51 @@ class UsaViz {
         vis.y.domain(vis.displayData.map(d => d.country));
 
         // Create and update rectangles
-        vis.bars = vis.svg.selectAll("rect")
+        vis.gold = vis.svg.selectAll("rect")
+            .data(vis.displayData);
+
+        vis.silver = vis.svg.selectAll("rect")
+            .data(vis.displayData);
+
+        vis.bronze = vis.svg.selectAll("rect")
             .data(vis.displayData);
 
         vis.text = vis.svg.selectAll(".text")
             .data(vis.displayData);
 
-        vis.bars
+        vis.gold
             .enter()
             .append("rect")
             .attr("class", "gold-bar")
             .attr("fill", "#af9500")
-            .merge(vis.bars)
+            .on("mouseover", function(event, d){
+                vis.tipMouseover(event, d);
+            })
+            .on("mouseout", function(){
+                vis.tipMouseout();
+            })
+            .merge(vis.gold)
             .transition()
             .duration(300)
             .attr("x", 2)
             .attr("y", d => vis.y(d.country))
             .attr("width", d => vis.x(d.total))
-            .attr("height", vis.y.bandwidth())
+            .attr("height", vis.y.bandwidth());
 
-        vis.bars
+        vis.gold.exit().remove();
+
+        vis.silver
             .enter()
             .append("rect")
             .attr("class", "silver-bar")
             .attr("fill", "#d7d7d7")
-            .merge(vis.bars)
+            .on("mouseover", function(event, d){
+                vis.tipMouseover(event, d);
+            })
+            .on("mouseout", function(){
+                vis.tipMouseout();
+            })
+            .merge(vis.silver)
             .transition()
             .duration(300)
             .attr("x", 2)
@@ -113,12 +138,20 @@ class UsaViz {
             .attr("width", d => vis.x(d.total - d.Gold))
             .attr("height", vis.y.bandwidth())
 
-        vis.bars
+        vis.silver.exit().remove();
+
+        vis.bronze
             .enter()
             .append("rect")
             .attr("class", "bronze-bar")
             .attr("fill", "#6a3805")
-            .merge(vis.bars)
+            .on("mouseover", function(event, d){
+                vis.tipMouseover(event, d);
+            })
+            .on("mouseout", function(){
+                vis.tipMouseout();
+            })
+            .merge(vis.bronze)
             .transition()
             .duration(300)
             .attr("x", 2)
@@ -126,13 +159,13 @@ class UsaViz {
             .attr("width", d => vis.x(d.total - d.Gold - d.Silver))
             .attr("height", vis.y.bandwidth())
 
-        vis.bars.exit().remove();
+        vis.bronze.exit().remove();
 
         vis.text
             .enter()
             .append("text")
             .attr("class", "text")
-            .attr("fill", "#005d5d")
+            .attr("fill", "#292929")
             .merge(vis.text)
             .transition()
             .duration(300)
@@ -146,5 +179,35 @@ class UsaViz {
         // Update the y-axis
         vis.svg.select(".y-axis").transition().duration(600).call(vis.yAxis);
     }
+    // tooltip mouseover event handler
+    tipMouseover(event, d) {
+        // To make the tooltip easier to read
+        let vis = this;
+
+        vis.tooltip.html(`
+         <div style="border: thin solid grey; border-radius: 5px; background: white; width: 200px">
+             <h5><bold>${d.country}</bold></h5>
+             <h6>Gold: ${d.Gold}</h6>
+             <h6>Silver: ${d.Silver}</h6>
+             <h6>Bronze: ${d.Bronze}</h6>
+         </div>`
+        )
+            .style("left", 445 + "px")
+            .style("top", (0.7*(vis.y(d.country)) + 70) + "px")
+            .style("text-align", "center")
+            .transition()
+            .duration(300) // ms
+            .style("opacity", 0.9)
+
+    };
+
+    // tooltip mouseout event handler
+    tipMouseout() {
+        let vis = this;
+
+        vis.tooltip.transition()
+            .duration(300) // ms
+            .style("opacity", 0); // don't care about position!
+    };
 }
 
