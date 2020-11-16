@@ -81,18 +81,24 @@ class UsaViz {
         vis.y.domain(vis.displayData.map(d => d.country));
 
         // Create and update rectangles
-        vis.bars = vis.svg.selectAll("rect")
+        vis.gold = vis.svg.selectAll("rect")
+            .data(vis.displayData);
+
+        vis.silver = vis.svg.selectAll("rect")
+            .data(vis.displayData);
+
+        vis.bronze = vis.svg.selectAll("rect")
             .data(vis.displayData);
 
         vis.text = vis.svg.selectAll(".text")
             .data(vis.displayData);
 
-        vis.bars
+        vis.gold
             .enter()
             .append("rect")
             .attr("class", "gold-bar")
             .attr("fill", "#af9500")
-            .merge(vis.bars)
+            .merge(vis.gold)
             .transition()
             .duration(300)
             .attr("x", 2)
@@ -100,12 +106,14 @@ class UsaViz {
             .attr("width", d => vis.x(d.total))
             .attr("height", vis.y.bandwidth())
 
-        vis.bars
+        vis.gold.exit().remove();
+
+        vis.silver
             .enter()
             .append("rect")
             .attr("class", "silver-bar")
             .attr("fill", "#d7d7d7")
-            .merge(vis.bars)
+            .merge(vis.silver)
             .transition()
             .duration(300)
             .attr("x", 2)
@@ -113,12 +121,14 @@ class UsaViz {
             .attr("width", d => vis.x(d.total - d.Gold))
             .attr("height", vis.y.bandwidth())
 
-        vis.bars
+        vis.silver.exit().remove();
+
+        vis.bronze
             .enter()
             .append("rect")
             .attr("class", "bronze-bar")
             .attr("fill", "#6a3805")
-            .merge(vis.bars)
+            .merge(vis.bronze)
             .transition()
             .duration(300)
             .attr("x", 2)
@@ -126,7 +136,7 @@ class UsaViz {
             .attr("width", d => vis.x(d.total - d.Gold - d.Silver))
             .attr("height", vis.y.bandwidth())
 
-        vis.bars.exit().remove();
+        vis.bronze.exit().remove();
 
         vis.text
             .enter()
