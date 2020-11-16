@@ -23,13 +23,37 @@ class AgeViz {
         console.log(vis.displayData)
 
         var circleData = [
-            { "cx": 100, "cy": 250, "radius": 100, "color" : "#d7d7d7", "text" : "SILVER: " },
-            { "cx": 500, "cy": 250, "radius": 100, "color" : "#6a3805", "text" : "BRONZE: " },
-            { "cx": 300, "cy": 250, "radius": 150, "color" : "#af9500", "text" : "GOLD: " }];
+            { "cx": 150, "cy": 250, "radius": 100, "color" : "#d7d7d7", "text" : "SILVER: " },
+            { "cx": 550, "cy": 250, "radius": 100, "color" : "#6a3805", "text" : "BRONZE: " },
+            { "cx": 350, "cy": 250, "radius": 150, "color" : "#af9500", "text" : "GOLD: " }];
+
+        var lineData = [
+            {"x1": 50, "y1": -50, "x2": 150, "y2": 300, "fill" : "grey", "thick": 100},
+            {"x1": 250, "y1": -50, "x2": 150, "y2": 300, "fill" : "grey", "thick": 100},
+
+            {"x1": 450, "y1": -50, "x2": 550, "y2": 300, "fill" : "grey", "thick": 100},
+            {"x1": 650, "y1": -50, "x2": 550, "y2": 300, "fill" : "grey", "thick": 100},
+
+            {"x1": 250, "y1": -50, "x2": 350, "y2": 300, "fill" : "darkgrey", "thick": 130 },
+            {"x1": 450, "y1": -50, "x2": 350, "y2": 300, "fill" : "darkgrey", "thick": 130},
+        ]
 
         var svg = d3.select("#ageViz").append("svg")
-            .attr("width", 600)
+            .attr("width", 800)
             .attr("height", 500);
+
+        var line = svg.selectAll("line")
+            .data(lineData)
+            .enter()
+            .append("line");
+
+        var lineMedals = line
+            .attr("x1", d => d.x1)
+            .attr("y1", d => d.y1)
+            .attr("x2", d => d.x2)
+            .attr("y2", d => d.y2)
+            .attr("stroke-width", d => d.thick)
+            .attr("stroke", d => d.fill);
 
         var circles = svg.selectAll("circle")
             .data(circleData)
