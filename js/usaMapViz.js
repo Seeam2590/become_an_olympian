@@ -61,7 +61,7 @@ class UsaMapViz {
         // Legend labels and rectangles
         vis.svg.append("rect")
             .attr("x", 260)
-            .attr("y", 370)
+            .attr("y", 360)
             .attr("width", 150)
             .attr("height", 20)
             .style("stroke", '#000')
@@ -70,7 +70,7 @@ class UsaMapViz {
         // Creating the text for the legend labels
         vis.svg.append("text")
             .attr("x", 260)
-            .attr("y", 403)
+            .attr("y", 393)
             .attr("fill", "#000")
             .attr("font-size", "9px")
             .text("0");
@@ -78,14 +78,14 @@ class UsaMapViz {
         // Creating the text for the legend label which will change
         vis.limit = vis.svg.append("text")
             .attr("x", 410)
-            .attr("y", 403)
+            .attr("y", 393)
             .attr("fill", "#000")
             .attr("font-size", "9px")
             .attr("text-anchor", "end");
 
         vis.svg.append("text")
             .attr("x", 300)
-            .attr("y", 365)
+            .attr("y", 355)
             .attr("fill", "#000")
             .attr("font-size", "9px")
             .text("No. of Athletes");
