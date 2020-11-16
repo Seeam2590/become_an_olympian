@@ -49,6 +49,11 @@ class UsaViz {
         vis.svg.append("g")
             .attr("class", "y-axis axis");
 
+        // append tooltip
+        vis.tooltip = d3.select("#" + vis.parentElement).append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
         vis.wrangleData();
     }
 
@@ -98,6 +103,12 @@ class UsaViz {
             .append("rect")
             .attr("class", "gold-bar")
             .attr("fill", "#af9500")
+            .on("mouseover", function(event, d){
+                vis.tipMouseover(event, d);
+            })
+            .on("mouseout", function(){
+                vis.tipMouseout();
+            })
             .merge(vis.gold)
             .transition()
             .duration(300)
@@ -113,6 +124,12 @@ class UsaViz {
             .append("rect")
             .attr("class", "silver-bar")
             .attr("fill", "#d7d7d7")
+            .on("mouseover", function(event, d){
+                vis.tipMouseover(event, d);
+            })
+            .on("mouseout", function(){
+                vis.tipMouseout();
+            })
             .merge(vis.silver)
             .transition()
             .duration(300)
@@ -128,6 +145,12 @@ class UsaViz {
             .append("rect")
             .attr("class", "bronze-bar")
             .attr("fill", "#6a3805")
+            .on("mouseover", function(event, d){
+                vis.tipMouseover(event, d);
+            })
+            .on("mouseout", function(){
+                vis.tipMouseout();
+            })
             .merge(vis.bronze)
             .transition()
             .duration(300)
@@ -156,5 +179,34 @@ class UsaViz {
         // Update the y-axis
         vis.svg.select(".y-axis").transition().duration(600).call(vis.yAxis);
     }
+    // tooltip mouseover event handler
+    tipMouseover(event, d) {
+        // To make the tooltip easier to read
+        let vis = this;
+
+        vis.tooltip.html(`
+         <div style="border: thin solid grey; border-radius: 5px; background: white; width: 200px">
+             <h5><bold>${d.country}</bold></h5>
+             <h6>Gold: ${d.Gold}</h6>
+             <h6>Silver: ${d.Silver}</h6>
+             <h6>Bronze: ${d.Bronze}</h6>
+         </div>`
+        )
+            .style("left", 445 + "px")
+            .style("top", 50 + "px")
+            .transition()
+            .duration(300) // ms
+            .style("opacity", 0.9)
+
+    };
+
+    // tooltip mouseout event handler
+    tipMouseout() {
+        let vis = this;
+
+        vis.tooltip.transition()
+            .duration(300) // ms
+            .style("opacity", 0); // don't care about position!
+    };
 }
 
