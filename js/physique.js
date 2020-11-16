@@ -114,7 +114,7 @@ class PhysiqueVis {
         vis.x.domain([d3.min(vis.HeightBySportNice, d=>d.year) - 4, d3.max(vis.HeightBySportNice, d=>d.year)+ 4])
         vis.y.domain([0, maximumHeight + 20])
 
-        vis.svg.selectAll("circle").data(vis.HeightBySportNice)
+        vis.circles = vis.svg.selectAll("circle").data(vis.HeightBySportNice)
             .enter()
             .append("circle")
             .attr("cx", d => vis.x(d.year))
@@ -127,19 +127,27 @@ class PhysiqueVis {
 
         vis.svg.append("g")
             .attr("class", "x-axis axis")
-            //.attr("transform", "translate(" + vis.margin.left + ",0)");
+            .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
 
         vis.yAxis = d3.axisLeft()
             .scale(vis.y);
 
         vis.svg.append("g")
             .attr("class", "y-axis axis")
-            //.attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
+            .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
 
-
+        vis.svg.append("g")
+            .attr("class", "circles")
+            .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
 
         vis.svg.select(".y-axis").call(vis.yAxis);
         vis.svg.select(".x-axis").call(vis.xAxis);
+
+
+        vis.svg.select(".circles").call(vis.circles);
+
+
+
     }
 }
 
