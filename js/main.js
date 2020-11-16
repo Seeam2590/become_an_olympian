@@ -1,6 +1,7 @@
 // Variable for the visualization instance
 let usaViz;
 let physiqueVis;
+let usaMapViz;
 
 // Paths to data
 let url1 = 'data/athlete_events.csv';
@@ -18,6 +19,7 @@ Promise.all([
     d3.csv(url4),
     d3.csv(url5),
     d3.csv(url6),
+    d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
 ]).then(gettingStarted)
 
 
@@ -25,7 +27,7 @@ Promise.all([
 // We're handing over the fetched data to this function.
 // From the data, we're creating the final data structure we need and create a new instance of the StationMap
 function gettingStarted(data) {
-    let [athlete_events, athletes, countries, country_extended, events, noc_regions] = data;
+    let [athlete_events, athletes, countries, country_extended, events, noc_regions, world] = data;
     console.log(athlete_events)
 
 
@@ -35,4 +37,5 @@ function gettingStarted(data) {
     // Instantiate visualization object
     usaViz = new UsaViz("usaViz", country_extended);
     physiqueVis = new PhysiqueVis("physiqueVis", athlete_events)
+    usaMapViz = new UsaMapViz("usaMapViz", world);
 }
