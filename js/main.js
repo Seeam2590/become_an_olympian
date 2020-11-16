@@ -36,6 +36,7 @@ function gettingStarted(data) {
 
     // Instantiate visualization object
     usaViz = new UsaViz("usaViz", country_extended);
-    physiqueVis = new PhysiqueVis("physiqueVis", athlete_events)
+    physiqueVis = new PhysiqueVis("physiqueVis", athlete_events);
+    ageViz = new AgeViz("ageViz", athlete_events);
     usaMapViz = new UsaMapViz("usaMapViz", world);
 }
