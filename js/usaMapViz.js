@@ -11,7 +11,7 @@ class UsaMapViz {
      */
     constructor(parentElement, data) {
         this.parentElement = parentElement;
-        this.data = data;
+        this.worldGeo = data;
         this.initVis();
     }
 
@@ -21,7 +21,7 @@ class UsaMapViz {
      */
     initVis () {
         let vis = this;
-        vis.margin = {top: 10, right: 100, bottom: 40, left: 80};
+        vis.margin = {top: 10, right: 150, bottom: 40, left: 0};
 
         vis.width = $('#' + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = $('#' + vis.parentElement).height() - vis.margin.top - vis.margin.bottom;
@@ -33,6 +33,22 @@ class UsaMapViz {
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
+
+        // Getting the projection
+        vis.projection = d3.geoNaturalEarth()
+            .scale(vis.width / 1.3 / Math.PI)
+            .translate([vis.width / 2, vis.height / 2])
+
+        // Draw the map
+        vis.svg.append("g")
+            .selectAll("path")
+            .data(vis.worldGeo.features)
+            .enter().append("path")
+            .attr("fill", "#fff")
+            .attr("d", d3.geoPath()
+                .projection(vis.projection)
+            )
+            .style("stroke", "#000")
 
         vis.wrangleData();
     }
