@@ -45,6 +45,51 @@ class UsaMapViz {
             .attr("class", "tooltip")
             .style("opacity", 0);
 
+        // Legend Gradient
+        vis.bgGradient = vis.svg
+            .append('linearGradient')
+            .attr('id', 'bg-gradient');
+        vis.bgGradient
+            .append('stop')
+            .attr('stop-color', 'white')
+            .attr('offset', '0%');
+        vis.bgGradient
+            .append('stop')
+            .attr('stop-color', '#00441b')
+            .attr('offset', '100%');
+
+        // Legend labels and rectangles
+        vis.svg.append("rect")
+            .attr("x", 260)
+            .attr("y", 370)
+            .attr("width", 150)
+            .attr("height", 20)
+            .style("stroke", '#000')
+            .attr("fill", "url(#bg-gradient)");
+
+        // Creating the text for the legend labels
+        vis.svg.append("text")
+            .attr("x", 260)
+            .attr("y", 403)
+            .attr("fill", "#000")
+            .attr("font-size", "9px")
+            .text("0");
+
+        // Creating the text for the legend label which will change
+        vis.limit = vis.svg.append("text")
+            .attr("x", 410)
+            .attr("y", 403)
+            .attr("fill", "#000")
+            .attr("font-size", "9px")
+            .attr("text-anchor", "end");
+
+        vis.svg.append("text")
+            .attr("x", 300)
+            .attr("y", 365)
+            .attr("fill", "#000")
+            .attr("font-size", "9px")
+            .text("No. of Athletes");
+
         vis.wrangleData();
     }
 
@@ -73,7 +118,7 @@ class UsaMapViz {
             } else {
                 d.color = "#fff";
                 d.athletes = 0;
-                d.country = d.id
+                d.country = d.properties.name
             }
         });
 
@@ -82,6 +127,9 @@ class UsaMapViz {
 
     updateVis() {
         let vis = this;
+
+        // Changing legend labels
+        vis.limit.text(vis.maxAthletes);
 
         // Draw the map
         vis.svg.append("g")
