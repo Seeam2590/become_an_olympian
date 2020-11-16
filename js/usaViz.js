@@ -165,7 +165,7 @@ class UsaViz {
             .enter()
             .append("text")
             .attr("class", "text")
-            .attr("fill", "#005d5d")
+            .attr("fill", "#292929")
             .merge(vis.text)
             .transition()
             .duration(300)
@@ -193,7 +193,8 @@ class UsaViz {
          </div>`
         )
             .style("left", 445 + "px")
-            .style("top", 50 + "px")
+            .style("top", (0.7*(vis.y(d.country)) + 70) + "px")
+            .style("text-align", "center")
             .transition()
             .duration(300) // ms
             .style("opacity", 0.9)
