@@ -164,7 +164,7 @@ class UsaMapViz {
             .style("text-align", "center")
             .transition()
             .duration(300) // ms
-            .style("opacity", 0.9)
+            .style("opacity", 1)
 
     };
 
