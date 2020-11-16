@@ -23,7 +23,7 @@ class PhysiqueVis {
     initVis () {
         let vis = this;
 
-        vis.margin = {top: 20, right: 20, bottom: 40, left: 100};
+        vis.margin = {top: 20, right: 20, bottom: 40, left: 30};
         vis.width = $('#' + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = $('#' + vis.parentElement).height() - vis.margin.top - vis.margin.bottom;
 
@@ -126,14 +126,15 @@ class PhysiqueVis {
             .scale(vis.x);
 
         vis.svg.append("g")
-            .attr("class", "x-axis axis");
-        //.attr("transform", "translate(0," + vis.height + ")");
+            .attr("class", "x-axis axis")
+            //.attr("transform", "translate(" + vis.margin.left + ",0)");
 
         vis.yAxis = d3.axisLeft()
             .scale(vis.y);
 
         vis.svg.append("g")
-            .attr("class", "y-axis axis");
+            .attr("class", "y-axis axis")
+            //.attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
 
 
 
