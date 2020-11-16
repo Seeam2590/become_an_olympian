@@ -28,8 +28,7 @@ function gettingStarted(data) {
     // log data for checking
     // console.log(country_extended);
 
-    // Instantiate visualization object (bike-sharing stations in Boston)
+    // Instantiate visualization object
     usaViz = new UsaViz("usaViz", country_extended);
-
     physiqueVis = new PhysiqueVis("physiqueVis", athlete_events)
 }
