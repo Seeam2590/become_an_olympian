@@ -36,39 +36,42 @@ class UsaScatterViz {
 
         // Add X axis
         vis.x = d3.scaleLinear()
-            .domain([0, 18000])
             .range([ 0, vis.width ]);
 
-        vis.svg.append("g")
-            .attr("transform", "translate(0," + vis.height + ")")
-            .call(d3.axisBottom(vis.x));
+        vis.xAxis = d3.axisBottom()
+            .scale(vis.x);
+
+        vis.xAxisGroup = vis.svg.append("g")
+            .attr("class", "x-axis axis");
 
         // Add Y axis
         vis.y = d3.scaleLinear()
-            .domain([0, 6000])
-            .range([ vis.height, 0]);
+            .range([ vis.height, 0])
+            .domain([-500, 6000]);
 
-        vis.svg.append("g")
-            .call(d3.axisLeft(vis.y));
+        vis.yAxis = d3.axisLeft()
+            .scale(vis.y)
+            .tickValues([0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000]);
 
-        // Add a scale for bubble size
-        //vis.z = d3.scaleLinear()
-          //  .domain([200000, 1310000000])
-           // .range([ 1, 40]);
+        vis.yAxisGroup = vis.svg.append("g")
+            .attr("class", "y-axis axis");
 
-        // Add dots
-        vis.svg.append('g')
-            .selectAll("dot")
-            .data(vis.data)
-            .enter()
-            .append("circle")
-            .attr("cx", function (d) { return vis.x(d.athletes); } )
-            .attr("cy", function (d) { return vis.y(d.total); } )
-            .attr("r", 6)
-            //.attr("r", function (d) { return z(d.pop); } )
-            .style("fill", "#69b3a2")
-            .style("opacity", "0.7")
-            .attr("stroke", "black")
+        vis.svg.select(".y-axis")
+            .call(vis.yAxis);
+
+        // Y-axis label
+        vis.svg.append("text")
+            .attr("class", "y label")
+            .attr("text-anchor", "end")
+            .attr("y", 25)
+            .attr("x", 0)
+            .attr("transform", "rotate(-90)")
+            .text("Total Medals");
+
+        // append tooltip
+        vis.tooltip = d3.select("#" + vis.parentElement).append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
 
         vis.wrangleData();
     }
@@ -87,6 +90,82 @@ class UsaScatterViz {
     updateVis() {
         let vis = this;
 
+        // Choosing value from form
+        let selectBox = document.getElementById("scatter-x");
+        let selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+        // Update scale input domain for new data
+        vis.x.domain(d3.extent(vis.data, function(d) { return d[selectedValue]; }))
+
+        // Update axis
+        vis.svg.select(".x-axis")
+            .attr("transform", "translate(0," + vis.height +  ")")
+            .transition()
+            .duration(800)
+            .call(vis.xAxis);
+
+        // Add a scale for bubble size
+        vis.z = d3.scaleLinear()
+            .domain([200000, 1310000000])
+            .range([ 3, 27]);
+
+        // Add dots
+        vis.dots = vis.svg.append('g')
+            .selectAll("dot")
+            .data(vis.data)
+
+        vis.dots
+            .enter()
+            .append("circle")
+            .on("mouseover", function(event, d){
+                vis.tipMouseover(event, d);
+            })
+            .on("mouseout", function(){
+                vis.tipMouseout();
+            })
+            .merge(vis.dots)
+            .transition()
+            .duration(800)
+            .attr("cx", function (d) { return vis.x(d[selectedValue]); } )
+            .attr("cy", function (d) { return vis.y(d.total); } )
+            .attr("r", function (d) { return vis.z(d.population); } )
+            .style("fill", "#69b3a2")
+            .style("opacity", "0.7")
+            .attr("stroke", "black")
+
+        // Exit
+        vis.dots.exit().remove();
     }
+    // tooltip mouseover event handler
+    tipMouseover(event, d) {
+        // To make the tooltip easier to read
+        let vis = this;
+        let gdp = parseFloat(d.gdp_per_capita).toFixed(2)
+        vis.tooltip.html(`
+         <div style="border: thin solid grey; border-radius: 5px; background: white; width: 250px">
+             <h5><bold>${d.country}</bold></h5>
+             <h6>Medals: ${d.total}</h6>
+             <h6>Population: ${(d.population / 1000000).toFixed(2)}M</h6>
+             <h6>GDP/Capita in USD: ${gdp}</h6>
+             <h6>Olympians: ${d.athletes}</h6>
+         </div>`
+        )
+            .style("left", 245 + "px")
+            .style("top", 50 + "px")
+            .style("text-align", "center")
+            .transition()
+            .duration(300) // ms
+            .style("opacity", 0.9)
+
+    };
+
+    // tooltip mouseout event handler
+    tipMouseout() {
+        let vis = this;
+
+        vis.tooltip.transition()
+            .duration(300) // ms
+            .style("opacity", 0); // don't care about position!
+    };
 }
 

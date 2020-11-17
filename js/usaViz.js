@@ -69,6 +69,8 @@ class UsaViz {
             d.Silver = +d.Silver;
             d.Gold = +d.Gold;
             d.total = d.Bronze + d.Silver + d.Gold;
+            d.population = +d.population
+            d.gdp_per_capita = +d.gdp_per_capita
 
         });
 
