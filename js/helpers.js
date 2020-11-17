@@ -14,3 +14,8 @@ carousel.carousel({
 function switchView(){
     carousel.carousel('next')
 }
+
+// Interactive scatter plot
+$("#scatter-x").on("change", function() {
+    usaScatterViz.updateVis();
+});

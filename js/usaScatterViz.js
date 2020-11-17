@@ -94,8 +94,9 @@ class UsaScatterViz {
         let selectBox = document.getElementById("scatter-x");
         let selectedValue = selectBox.options[selectBox.selectedIndex].value;
 
-        // Update scale input domain for new data
-        vis.x.domain(d3.extent(vis.data, function(d) { return d[selectedValue]; }))
+        if (selectedValue == "gdp_per_capita") {
+            vis.x.domain([-10000, 110000])
+        } else { vis.x.domain([-1000, 18000]); }
 
         // Update axis
         vis.svg.select(".x-axis")
@@ -110,8 +111,8 @@ class UsaScatterViz {
             .range([ 3, 27]);
 
         // Add dots
-        vis.dots = vis.svg.append('g')
-            .selectAll("dot")
+        vis.dots = vis.svg
+            .selectAll("circle")
             .data(vis.data)
 
         vis.dots
@@ -150,8 +151,8 @@ class UsaScatterViz {
              <h6>Olympians: ${d.athletes}</h6>
          </div>`
         )
-            .style("left", 245 + "px")
-            .style("top", 50 + "px")
+            .style("left", 445 + "px")
+            .style("top", 150 + "px")
             .style("text-align", "center")
             .transition()
             .duration(300) // ms

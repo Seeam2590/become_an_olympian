@@ -44,7 +44,3 @@ function gettingStarted(data) {
     usaMapViz = new UsaMapViz("usaMapViz", world, country_extended);
     usaScatterViz = new UsaScatterViz("usaScatterViz", country_extended);
 }
-
-$("#scatter-x").on("change", function() {
-    usaScatterViz.updateVis();
-});
