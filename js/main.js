@@ -2,6 +2,8 @@
 let usaViz;
 let physiqueVis;
 let usaMapViz;
+let ageViz;
+let usaScatterViz;
 
 // Paths to data
 let url1 = 'data/athlete_events.csv';
@@ -39,4 +41,5 @@ function gettingStarted(data) {
     physiqueVis = new PhysiqueVis("physiqueVis", athlete_events);
     ageViz = new AgeViz("ageViz", athlete_events);
     usaMapViz = new UsaMapViz("usaMapViz", world, country_extended);
+    usaScatterViz = new UsaScatterViz("usaScatterViz", country_extended);
 }

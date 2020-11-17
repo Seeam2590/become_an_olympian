@@ -17,7 +17,7 @@ class UsaViz {
 
 
     /*
-     *  Initialize station map
+     *  Initialize bar chart
      */
     initVis () {
         let vis = this;
