@@ -36,13 +36,28 @@ class UsaScatterViz {
 
         // Add X axis
         vis.x = d3.scaleLinear()
-            .range([ 0, vis.width ]);
+            .range([ 0, vis.width ])
+            .domain([-1000, 18000]);
 
         vis.xAxis = d3.axisBottom()
             .scale(vis.x);
 
         vis.xAxisGroup = vis.svg.append("g")
             .attr("class", "x-axis axis");
+
+        // Drawing the X-axis
+        vis.svg.select(".x-axis")
+            .attr("transform", "translate(0," + vis.height +  ")")
+            .call(vis.xAxis);
+
+        // X-axis label
+        vis.svg.append("text")
+            .attr("class", "x label")
+            .attr("text-anchor", "end")
+            .attr("y", 470)
+            .attr("x", 580)
+            .attr("font-size", "12px")
+            .text("Total Olympians");
 
         // Add Y axis
         vis.y = d3.scaleLinear()
@@ -63,8 +78,9 @@ class UsaScatterViz {
         vis.svg.append("text")
             .attr("class", "y label")
             .attr("text-anchor", "end")
-            .attr("y", 25)
+            .attr("y", 20)
             .attr("x", 0)
+            .attr("font-size", "12px")
             .attr("transform", "rotate(-90)")
             .text("Total Medals");
 
@@ -72,6 +88,10 @@ class UsaScatterViz {
         vis.tooltip = d3.select("#" + vis.parentElement).append("div")
             .attr("class", "tooltip")
             .style("opacity", 0);
+
+        // Add a scale for bubble size
+        vis.z = d3.scaleLinear()
+            .range([ 3, 27]);
 
         vis.wrangleData();
     }
@@ -94,21 +114,8 @@ class UsaScatterViz {
         let selectBox = document.getElementById("scatter-x");
         let selectedValue = selectBox.options[selectBox.selectedIndex].value;
 
-        if (selectedValue == "gdp_per_capita") {
-            vis.x.domain([-10000, 110000])
-        } else { vis.x.domain([-1000, 18000]); }
-
-        // Update axis
-        vis.svg.select(".x-axis")
-            .attr("transform", "translate(0," + vis.height +  ")")
-            .transition()
-            .duration(800)
-            .call(vis.xAxis);
-
-        // Add a scale for bubble size
-        vis.z = d3.scaleLinear()
-            .domain([200000, 1310000000])
-            .range([ 3, 27]);
+        // Setting the domains for different possibilities
+        vis.z.domain(d3.extent(vis.data, function(d) { return d[selectedValue]; }))
 
         // Add dots
         vis.dots = vis.svg
@@ -127,9 +134,9 @@ class UsaScatterViz {
             .merge(vis.dots)
             .transition()
             .duration(800)
-            .attr("cx", function (d) { return vis.x(d[selectedValue]); } )
+            .attr("cx", function (d) { return vis.x(d.athletes); } )
             .attr("cy", function (d) { return vis.y(d.total); } )
-            .attr("r", function (d) { return vis.z(d.population); } )
+            .attr("r", function (d) { return vis.z(d[selectedValue]); } )
             .style("fill", "#69b3a2")
             .style("opacity", "0.7")
             .attr("stroke", "black")
