@@ -74,16 +74,21 @@ class UsaViz {
 
         });
 
-        vis.displayData = vis.data.sort((a, b) => b.total - a.total).slice(0, 10);
-        vis.displayData = vis.displayData.sort((a, b) => a.total - b.total);
         // console.log(vis.displayData)
-
         // Update the visualization
         vis.updateVis();
     }
 
     updateVis() {
         let vis = this;
+
+        // Choosing value from form
+        let selectBox = document.getElementById("top-choice");
+        let selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+        vis.displayData = vis.data.sort((a, b) => b.total - a.total).slice(selectedValue - 10, selectedValue);
+        vis.displayData = vis.displayData.sort((a, b) => a.total - b.total);
+
         vis.x.domain([0, d3.max(vis.displayData, d => d.total)]);
         vis.y.domain(vis.displayData.map(d => d.country));
 
@@ -91,10 +96,10 @@ class UsaViz {
         vis.gold = vis.svg.selectAll("rect")
             .data(vis.displayData);
 
-        vis.silver = vis.svg.selectAll("rect")
+        vis.silver = vis.svg.selectAll("rect1")
             .data(vis.displayData);
 
-        vis.bronze = vis.svg.selectAll("rect")
+        vis.bronze = vis.svg.selectAll("rect2")
             .data(vis.displayData);
 
         vis.text = vis.svg.selectAll(".text")

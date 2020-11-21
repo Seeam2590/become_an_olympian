@@ -19,3 +19,7 @@ function switchView(){
 $("#scatter-x").on("change", function() {
     usaScatterViz.updateVis();
 });
+
+$("#top-choice").on("change", function() {
+    usaViz.updateVis();
+});
