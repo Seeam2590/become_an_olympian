@@ -32,12 +32,11 @@ var inputElems2 = d3.selectAll(".age2")
 inputElems2.on("change", inputChange2);
 
 function inputChange1() {
-    console.log("running")
-    ageVizTest.sex = this.value;
-    ageVizTest.wrangleData();
+    ageViz.sex = this.value;
+    ageViz.wrangleData();
 }
 
 function inputChange2() {
-    ageVizTest.season = this.value;
-    ageVizTest.wrangleData();
+    ageViz.season = this.value;
+    ageViz.wrangleData();
 }
