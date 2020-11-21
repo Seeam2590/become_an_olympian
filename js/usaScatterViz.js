@@ -125,10 +125,16 @@ class UsaScatterViz {
         vis.dots
             .enter()
             .append("circle")
+            .attr("stroke", "black")
+            .attr('stroke-width', '0.5px')
             .on("mouseover", function(event, d){
+                d3.select(this)
+                    .attr('stroke-width', '2px')
                 vis.tipMouseover(event, d);
             })
             .on("mouseout", function(){
+                d3.select(this)
+                    .attr('stroke-width', '0.5px')
                 vis.tipMouseout();
             })
             .merge(vis.dots)
@@ -139,7 +145,6 @@ class UsaScatterViz {
             .attr("r", function (d) { return vis.z(d[selectedValue]); } )
             .style("fill", "#69b3a2")
             .style("opacity", "0.7")
-            .attr("stroke", "black")
 
         // Exit
         vis.dots.exit().remove();

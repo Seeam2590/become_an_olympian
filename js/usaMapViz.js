@@ -101,6 +101,10 @@ class UsaMapViz {
 
         vis.data.forEach(function (d) {
             d.athletes = +d.athletes;
+            d.Bronze = +d.Bronze;
+            d.Silver = +d.Silver;
+            d.Gold = +d.Gold;
+            d.total = d.Bronze + d.Silver + d.Gold;
         });
 
         vis.maxAthletes = vis.data.reduce((a,b)=>a.athletes>b.athletes?a:b).athletes;
@@ -115,10 +119,18 @@ class UsaMapViz {
                 d.color = vis.color(info[0].athletes)
                 d.athletes = info[0].athletes
                 d.country = info[0].country
+                d.total = info[0].total
+                d.Gold = info[0].Gold
+                d.Bronze = info[0].Bronze
+                d.Silver = info[0].Silver
             } else {
                 d.color = "#fff";
                 d.athletes = 0;
                 d.country = d.properties.name
+                d.total = 0
+                d.Gold = 0
+                d.Bronze = 0
+                d.Silver = 0
             }
         });
 
@@ -136,10 +148,19 @@ class UsaMapViz {
             .selectAll("path")
             .data(vis.worldGeo.features)
             .enter().append("path")
+            .attr('stroke-width', '0.5px')
+            .on("click", function(event, d){
+                usaMap2Viz.wrangleData(d)
+            })
             .on("mouseover", function(event, d){
+                d3.select(this)
+                    .attr('stroke-width', '2px')
+                    .attr('stroke', 'black')
                 vis.tipMouseover(event, d);
             })
             .on("mouseout", function(){
+                d3.select(this)
+                    .attr('stroke-width', '0.5px')
                 vis.tipMouseout();
             })
             .attr("fill", d => { return d.color})
@@ -157,6 +178,8 @@ class UsaMapViz {
          <div style="border: thin solid grey; border-radius: 5px; background: white; width: 200px">
              <h5>${d.country}</h5>
              <h6>Olympic Athletes: ${d.athletes}</h6>
+             <h6>Total Medals: ${d.total}</h6>
+             <h6>Click for Medal Breakdown</h6>
          </div>`
         )
             .style("left", event.pageX - 200 + "px")
