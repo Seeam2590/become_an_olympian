@@ -174,13 +174,13 @@
                                     <h6>Sex</h6>
                                     <form id="formSex" class="btn-group btn-group-toggle" data-toggle="buttons">
                                         <label class="btn btn-secondary active">
-                                            <input type="radio" name="controlHeatmapType" onchange="ageViz.all()" checked>All<br>
+                                            <input class = "age1" type="radio" name="controlHeatmapType" value="All" checked>All<br>
                                         </label>
                                         <label class="btn btn-secondary">
-                                            <input type="radio" name="controlHeatmapType" onchange="ageViz.male()" >Male<br>
+                                            <input class = "age1" type="radio" name="controlHeatmapType" value="M">Male<br>
                                         </label>
                                         <label class="btn btn-secondary">
-                                            <input type="radio" name="controlHeatmapType" onchange="ageViz.female()" >Female<br>
+                                            <input class = "age1" type="radio" name="controlHeatmapType" value="F">Female<br>
                                         </label>
                                     </form>
 
@@ -190,13 +190,13 @@
                                     <h6>Season</h6>
                                     <form id="formSeason" class="btn-group btn-group-toggle" data-toggle="buttons">
                                         <label class="btn btn-secondary active">
-                                            <input type="radio" name="controlHeatmapType" onchange="ageViz.all()" checked>All<br>
+                                            <input class = "age2" type="radio" name="controlHeatmapType" value="All" checked>All<br>
                                         </label>
                                         <label class="btn btn-secondary">
-                                            <input type="radio" name="controlHeatmapType" onchange="ageViz.summer()">Summer<br>
+                                            <input class = "age2" type="radio" name="controlHeatmapType" value="Summer">Summer<br>
                                         </label>
                                         <label class="btn btn-secondary">
-                                            <input type="radio" name="controlHeatmapType" onchange="ageViz.winter()">Winter<br>
+                                            <input class = "age2" type="radio" name="controlHeatmapType" value="Winter">Winter<br>
                                         </label>
                                     </form>
 
@@ -336,5 +336,6 @@
         <script src="js/usaMapViz.js"></script>
         <script src="js/usaScatterViz.js"></script>
         <script src="js/usaMap2Viz.js"></script>
+        <script src="js/ageVizTest.js"></script>
     </body>
 </html>

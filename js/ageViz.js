@@ -418,7 +418,8 @@ class AgeViz {
     updateVis() {
         let vis = this;
 
-
+        var inputElems = d3.selectAll("input");
+        console.log(inputElems)
 
 
     }

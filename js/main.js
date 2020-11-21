@@ -5,6 +5,7 @@ let usaMapViz;
 let ageViz;
 let usaScatterViz;
 let usaMap2Viz;
+let ageVizTest;
 
 // Paths to data
 let url1 = 'data/athlete_events.csv';
@@ -40,8 +41,9 @@ function gettingStarted(data) {
     // Instantiate visualization object
     usaViz = new UsaViz("usaViz", country_extended);
     physiqueVis = new PhysiqueVis("physiqueVis", athlete_events);
-    ageViz = new AgeViz("ageViz", athlete_events);
+    // ageViz = new AgeViz("ageViz", athlete_events);
     usaMapViz = new UsaMapViz("usaMapViz", world, country_extended);
     usaScatterViz = new UsaScatterViz("usaScatterViz", country_extended);
     usaMap2Viz = new UsaMap2Viz("usaMap2Viz");
+    ageVizTest = new AgeVizTest("ageViz", athlete_events);
 }

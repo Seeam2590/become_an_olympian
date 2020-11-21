@@ -53,7 +53,7 @@ class UsaMap2Viz {
             .attr("y", 0)
             .attr("fill", "#000")
             .attr("font-size", "14px")
-            .text("United States of America")
+            .text("United States")
 
         vis.wrangleData();
     }
