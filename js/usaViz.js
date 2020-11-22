@@ -109,7 +109,7 @@ class UsaViz {
             .enter()
             .append("rect")
             .attr("class", "gold-bar")
-            .attr("fill", "#af9500")
+            .attr("fill", "#ffd44a")
             .on("mouseover", function(event, d){
                 vis.tipMouseover(event, d);
             })
