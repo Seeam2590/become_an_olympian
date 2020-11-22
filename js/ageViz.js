@@ -22,7 +22,7 @@ class AgeViz {
         var circleData = [
             { "cx": 150, "cy": 250, "radius": 100, "color" : "#d7d7d7", "text" : "SILVER: " },
             { "cx": 550, "cy": 250, "radius": 100, "color" : "#6a3805", "text" : "BRONZE: " },
-            { "cx": 350, "cy": 250, "radius": 150, "color" : "#af9500", "text" : "GOLD: " }];
+            { "cx": 350, "cy": 250, "radius": 150, "color" : "#ffd44a", "text" : "GOLD: " }];
 
         var lineData = [
             {"x1": 50, "y1": -50, "x2": 150, "y2": 300, "fill" : "grey", "thick": 100},
