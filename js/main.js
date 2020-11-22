@@ -5,6 +5,7 @@ let usaMapViz;
 let usaScatterViz;
 let usaMap2Viz;
 let ageViz;
+let physBox;
 
 // Paths to data
 let url1 = 'data/athlete_events.csv';
@@ -42,4 +43,5 @@ function gettingStarted(data) {
     usaScatterViz = new UsaScatterViz("usaScatterViz", country_extended);
     usaMap2Viz = new UsaMap2Viz("usaMap2Viz");
     ageViz = new AgeViz("ageViz", athlete_events);
+    physBox = new PhysBox("physBox", athlete_events);
 }

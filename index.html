@@ -138,13 +138,44 @@
         <!-- Physique -->
         <section class="projects-section bg-light" id="physique" style="padding-top: 10px">
             <div class="container">
-                <h2 class="text-black mb-4">What is the Physique of the ideal Olympian?</h2>
-                <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-                    <div class="col-xl-8 col-lg-7" id="physiqueVis" style="height: 40vh"></div>
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="featured-text text-center text-lg-left">
-                            <h4>Physique</h4>
-                            <p class="text-black-50 mb-0">Here, we explore what the ideal body type of Olympic athletes is. We are thinking of switching this to a line chart and we are working on getting enough colors for all of the sports (there are 67, so it's a little bit tricky). We will do additional filtering options to narrow it down.  </p>
+                <!-- Featured Project Row -->
+                <div id="stateCarousel2" class="carousel slide" data-ride="carousel" style="height: 70vh; width: 100%">
+                    <h2 class="text-black mb-4">What is the Physique of the ideal Olympian?</h2>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+                                <div class="col-xl-8 col-lg-7" id="physiqueVis" style="height: 40vh"></div>
+                                <div class="col-xl-4 col-lg-5">
+                                    <div class="featured-text text-center text-lg-left">
+                                        <h4>Physique</h4>
+                                        <p class="text-black-50 mb-0">Here, we explore what the ideal body type of Olympic athletes is. We are thinking of switching this to a line chart and we are working on getting enough colors for all of the sports (there are 67, so it's a little bit tricky). We will do additional filtering options to narrow it down.  </p>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" id="btn-usa4" onclick="switchView2()">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+                                <div class="col-xl-8 col-lg-7" id="physBox" style="height: 70vh; width: 50vw"></div>
+                                <div class="col-xl-4 col-lg-5">
+                                    <div>
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <label for="box-y">Choose Y-Axis</label>
+                                                <select class="form-control" id="box-y" style="margin: 10px;">
+                                                    <option value="Height">Height in cm</option>
+                                                    <option value="Weight">Weight in kg</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="featured-text text-center text-lg-left">
+                                        <h4>Explore the ideal Physique</h4>
+                                        <p class="text-black-50 mb-0">The box plots show the distribution of height & weight for every Olympian (Male and Female) from 1896 - 2016. The vertical lines represent ranges & horizontal lines represent medians.</p>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" id="btn-usa5" onclick="switchView2()">To Start</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -281,6 +312,7 @@
         <script src="https://d3js.org/d3.v6.min.js"></script>
         <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
         <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+        <script src="https://d3js.org/d3-collection.v1.min.js"></script>
         <!-- Our d3 scripts-->
         <script src="js/main.js"></script>
         <script src="js/helpers.js"></script>
@@ -290,5 +322,6 @@
         <script src="js/usaScatterViz.js"></script>
         <script src="js/usaMap2Viz.js"></script>
         <script src="js/ageViz.js"></script>
+        <script src="js/physBox.js"></script>
     </body>
 </html>

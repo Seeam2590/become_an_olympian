@@ -15,6 +15,22 @@ function switchView(){
     carousel.carousel('next')
 }
 
+let carousel2 = $('#stateCarousel2');
+
+// prevent rotating
+carousel2.carousel({
+    interval: false
+})
+
+// on button click switch view
+function switchView2(){
+    carousel2.carousel('next')
+}
+
+/* * * * * * * * * * * * * *
+*  Graph interactivity     *
+* * * * * * * * * * * * * */
+
 // Interactive scatter plot
 $("#scatter-x").on("change", function() {
     usaScatterViz.updateVis();
@@ -40,3 +56,7 @@ function inputChange2() {
     ageViz.season = this.value;
     ageViz.wrangleData();
 }
+
+$("#box-y").on("change", function() {
+    physBox.wrangleData();
+});
