@@ -72,7 +72,7 @@ class UsaMap2Viz {
             vis.displayData = [{medal: "Bronze", value: d.Bronze, color: "#6a3805"}, {medal: "Silver", value: d.Silver, color: "#d7d7d7"}, {medal: "Gold", value: d.Gold, color: "#af9500"}]
             vis.bartitle = d.country
         }
-        console.log(vis.displayData)
+
         // Update the visualization
         vis.updateVis();
     }

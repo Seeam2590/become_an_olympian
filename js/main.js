@@ -31,7 +31,6 @@ Promise.all([
 // From the data, we're creating the final data structure we need and create a new instance of the StationMap
 function gettingStarted(data) {
     let [athlete_events, athletes, countries, country_extended, events, noc_regions, world] = data;
-    console.log(athlete_events)
 
     // log data for checking
     // console.log(country_extended);

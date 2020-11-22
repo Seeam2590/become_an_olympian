@@ -19,9 +19,6 @@ class AgeViz {
 
     initVis () {
         let vis = this;
-
-        console.log(vis.displayData)
-
         var circleData = [
             { "cx": 150, "cy": 250, "radius": 100, "color" : "#d7d7d7", "text" : "SILVER: " },
             { "cx": 550, "cy": 250, "radius": 100, "color" : "#6a3805", "text" : "BRONZE: " },

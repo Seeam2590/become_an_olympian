@@ -73,7 +73,7 @@ class PhysiqueVis {
         vis.HeightBySport = Array.from(vis.HeightBySport, ([key, value]) => ({key,value}));
         vis.HeightBySportNice = [];
         maximumHeight = 0;
-        console.log(vis.HeightBySport)
+
         vis.HeightBySport.forEach(function(row) {
             row.key = +row.key
             row.value.forEach(function(item){
@@ -103,15 +103,12 @@ class PhysiqueVis {
             vis.colorDomain.push(row.sport)
         )
         vis.colorDomain = d3.map(vis.HeightBySportNice, function(d){return d.sport;}).keys()
-        console.log(vis.colorDomain);
-
 
         vis.updateVis();
     }
 
     updateVis() {
         let vis = this;
-        console.log(d3.min(vis.HeightBySportNice, d=> d.year))
         vis.x.domain([d3.min(vis.HeightBySportNice, d=>d.year) - 4, d3.max(vis.HeightBySportNice, d=>d.year)+ 4])
         vis.y.domain([0, maximumHeight + 20])
 
