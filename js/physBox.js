@@ -169,7 +169,7 @@ class PhysBox {
             .attr("height", function(d){return(vis.y(d.value.q1)-vis.y(d.value.q3))})
             .attr("width", vis.boxWidth )
             .attr("stroke", "black")
-            .style("fill", "#69b3a2")
+            .attr("fill", function(d, i){if (i == 0){return "#b3dbed"} else {return "#fde0ab"}})
 
         // Exit
         vis.boxes.exit().remove();
