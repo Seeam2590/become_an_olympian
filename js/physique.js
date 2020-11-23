@@ -38,6 +38,7 @@ class PhysiqueVis {
             .range([0, vis.width]);
 
         vis.xAxis = d3.axisBottom()
+            .tickFormat(d3.format("d"))
             .scale(vis.x);
 
         vis.xAxisGroup = vis.svg.append("g")
