@@ -27,24 +27,48 @@ class PhysiqueVis {
         vis.width = $('#' + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = $('#' + vis.parentElement).height() - vis.margin.top - vis.margin.bottom;
 
+        // SVG drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
-            .attr("width", vis.width)
-            .attr("height", vis.height);
+            .attr("width", vis.width + vis.margin.left + vis.margin.right)
+            .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
         vis.x = d3.scaleLinear()
-            .range([0, vis.width-40]);
+            .range([0, vis.width]);
+
+        vis.xAxis = d3.axisBottom()
+            .scale(vis.x);
+
+        vis.xAxisGroup = vis.svg.append("g")
+            .attr("class", "x-axis axis");
 
         vis.y = d3.scaleLinear()
-            .range([vis.height-30, 0]);
+            .range([vis.height, 0]);
+
+        vis.yAxis = d3.axisLeft()
+            .scale(vis.y)
+
+        vis.yAxisGroup = vis.svg.append("g")
+            .attr("class", "y-axis axis");
 
         // X-axis label
         vis.svg.append("text")
             .attr("class", "x label")
             .attr("text-anchor", "end")
-            .attr("y", 450)
+            .attr("y", 467)
             .attr("x", 590)
             .attr("font-size", "12px")
             .text("Year");
+
+        // Y-axis label
+        vis.ylabel = vis.svg.append("text")
+            .attr("class", "y label")
+            .attr("text-anchor", "end")
+            .attr("y", 20)
+            .attr("x", 0)
+            .attr("font-size", "12px")
+            .attr("transform", "rotate(-90)")
 
         vis.wrangleData();
     }
@@ -60,6 +84,13 @@ class PhysiqueVis {
         // Getting the dimensions
         let selectBox = document.getElementById("line-y");
         vis.indepVar = selectBox.options[selectBox.selectedIndex].value;
+
+        // Updating y-axis label
+        if (vis.indepVar == "Height"){
+            vis.ylabel.text("Height in cm");
+        } else {
+            vis.ylabel.text("Weight in kg");
+        }
 
         vis.displayData.forEach( row => {
             // and push rows with proper dates into filteredData
@@ -153,30 +184,21 @@ class PhysiqueVis {
         vis.circleDataM = vis.HeightBySportNiceM.filter(function(d){return d.sport === vis.selectValue})
 
 
-        vis.x.domain([d3.min(vis.HeightBySportNice, d=>+d.year) - 4, d3.max(vis.HeightBySportNice, d=>+d.year)+ 10])
+        vis.x.domain([d3.min(vis.HeightBySportNice, d=>+d.year) - 5, d3.max(vis.HeightBySportNice, d=>+d.year)+ 10])
         vis.y.domain([0, maximumVal + 20])
 
-        vis.xAxis = d3.axisBottom()
-            .scale(vis.x)
-            .tickFormat(d3.format("d"));
+        // Update axis
+        vis.svg.select(".x-axis")
+            .attr("transform", "translate(0," + vis.height +  ")")
+            .call(vis.xAxis);
 
-        vis.xTranslate = vis.height - 20;
-
-        vis.svg.append("g")
-            .attr("class", "x-axis axis")
-            .attr("transform", "translate("+ vis.margin.left +  "," + vis.xTranslate +")");
-        //.attr("transform", `translate (${vis.margin.left}, ${520})`);
-
-        vis.yAxis = d3.axisLeft()
-            .scale(vis.y);
-
-        vis.svg.append("g")
-            .attr("class", "y-axis axis")
-            .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
+        vis.svg.select(".y-axis")
+            .transition()
+            .duration(500)
+            .call(vis.yAxis);
 
         vis.linesF = vis.svg.selectAll(".lineF")
             .data(vis.filteredDataF)
-            .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
         vis.linesF.enter()
             .append("path")
             .attr("class", "lineF")
@@ -195,7 +217,6 @@ class PhysiqueVis {
 
         vis.linesM = vis.svg.selectAll(".lineM")
             .data(vis.filteredDataM)
-            .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
         vis.linesM.enter()
             .append("path")
             .attr("class", "lineM")
@@ -214,7 +235,6 @@ class PhysiqueVis {
 
         vis.circlesF = vis.svg.selectAll(".circleF")
             .data(vis.circleDataF)
-            .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
         vis.circlesF.enter()
             .append("circle")
             .attr("class", "circleF")
@@ -228,7 +248,6 @@ class PhysiqueVis {
 
         vis.circlesM = vis.svg.selectAll(".circleM")
             .data(vis.circleDataM)
-            .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
         vis.circlesM.enter()
             .append("circle")
             .attr("class", "circleM")

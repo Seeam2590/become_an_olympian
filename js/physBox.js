@@ -69,9 +69,6 @@ class PhysBox {
         vis.yAxisGroup = vis.svg.append("g")
             .attr("class", "y-axis axis");
 
-        vis.svg.select(".y-axis")
-            .call(vis.yAxis);
-
         // Y-axis label
         vis.ylabel = vis.svg.append("text")
             .attr("class", "y label")
@@ -124,12 +121,6 @@ class PhysBox {
     updateVis() {
         let vis = this;
 
-        // Update axis
-        vis.svg.select(".y-axis")
-            .transition()
-            .duration(500)
-            .call(vis.yAxis);
-
         // Updating y-axis label
         if (vis.dimension == "Height"){
             vis.ylabel.text("Height in cm");
@@ -138,7 +129,13 @@ class PhysBox {
             vis.ylabel.text("Weight in kg");
             vis.min = 0
         }
+
         vis.y.domain([vis.min, d3.max(vis.displayData, function(d) { return d[vis.dimension]; })])
+        // Update axis
+        vis.svg.select(".y-axis")
+            .transition()
+            .duration(500)
+            .call(vis.yAxis);
 
         // Vertical Lines
         vis.vlines = vis.svg
