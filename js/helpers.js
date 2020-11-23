@@ -57,6 +57,10 @@ function inputChange2() {
     ageViz.wrangleData();
 }
 
+$("#selectorBox").on("change", function() {
+    physiqueVis.updateVis();
+});
+
 $("#box-y").on("change", function() {
     physBox.wrangleData();
 });
