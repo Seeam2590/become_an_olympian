@@ -57,6 +57,24 @@ function inputChange2() {
     ageViz.wrangleData();
 }
 
+var inputElems3 = d3.selectAll(".phys1")
+inputElems3.on("change", inputChange3);
+
+var inputElems4 = d3.selectAll(".phys2")
+inputElems4.on("change", inputChange4);
+
+function inputChange3() {
+    physiqueVis.season = this.value;
+    physiqueVis.wrangleData();
+}
+
+function inputChange4() {
+    physiqueVis.indepVar = this.value;
+    physiqueVis.wrangleData();
+}
+
+
+
 $("#box-y").on("change", function() {
     physBox.wrangleData();
 });
