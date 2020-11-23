@@ -71,6 +71,16 @@ class PhysiqueVis {
             .attr("font-size", "12px")
             .attr("transform", "rotate(-90)")
 
+        //Tooltip for Female Data
+        vis.tooltipF = d3.select("#" + vis.parentElement).append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+        //Tooltip for Male Data
+        vis.tooltipM = d3.select("#" + vis.parentElement).append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
         vis.wrangleData();
     }
 
@@ -92,6 +102,8 @@ class PhysiqueVis {
         } else {
             vis.ylabel.text("Weight in kg");
         }
+
+        vis.parameter = vis.indepVar;
 
         vis.displayData.forEach( row => {
             // and push rows with proper dates into filteredData
@@ -239,6 +251,16 @@ class PhysiqueVis {
         vis.circlesF.enter()
             .append("circle")
             .attr("class", "circleF")
+            .on("mouseover", function(event, d){
+                d3.select(this)
+                    .attr('stroke-width', '2px')
+                vis.tipMouseoverF(event, d);
+            })
+            .on("mouseout", function(){
+                d3.select(this)
+                    .attr('stroke-width', '0.5px')
+                vis.tipMouseoutF();
+            })
             .merge(vis.circlesF)
             .transition()
             .duration(500)
@@ -252,6 +274,16 @@ class PhysiqueVis {
         vis.circlesM.enter()
             .append("circle")
             .attr("class", "circleM")
+            .on("mouseover", function(event, d){
+                d3.select(this)
+                    .attr('stroke-width', '2px')
+                vis.tipMouseoverM(event, d);
+            })
+            .on("mouseout", function(){
+                d3.select(this)
+                    .attr('stroke-width', '0.5px')
+                vis.tipMouseoutM();
+            })
             .merge(vis.circlesM)
             .transition()
             .duration(500)
@@ -278,6 +310,69 @@ class PhysiqueVis {
             .transition()
             .duration(500)
             .call(vis.xAxis);
+
+
+
+
+
     }
+    tipMouseoverF(event, d) {
+        // To make the tooltip easier to read
+        let vis = this;
+
+        vis.tooltipF.html(`
+         <div style="border: thin solid grey; border-radius: 5px; background: white; width: 250px">
+             <h5><bold>${d.year}</bold></h5>
+             <p>Average ${vis.parameter}: ${d.indepVar} cm</p>
+             <p>Sport: ${d.sport}</p>
+             <p>Sex: Female</p>
+         </div>`
+        )
+            .style("left", 270 + "px")
+            .style("top", 150 + "px")
+            .style("text-align", "center")
+            .transition()
+            .duration(300) // ms
+            .style("opacity", 0.9)
+
+    };
+
+    // tooltip mouseout event handler
+    tipMouseoutF() {
+        let vis = this;
+
+        vis.tooltipF.transition()
+            .duration(300) // ms
+            .style("opacity", 0); // don't care about position!
+    };
+    tipMouseoverM(event, d) {
+        // To make the tooltip easier to read
+        let vis = this;
+        vis.tooltipM.html(`
+         <div style="border: thin solid grey; border-radius: 5px; background: white; width: 250px">
+             <h5><bold>${d.year}</bold></h5>
+             <p>Average ${vis.parameter}: ${d.indepVar} cm</p>
+             <p>Sport: ${d.indepVar}</p>
+             <p>Sex: Male</p>
+            
+         </div>`
+        )
+            .style("left", 270  + "px")
+            .style("top", 150  + "px")
+            .style("text-align", "center")
+            .transition()
+            .duration(300) // ms
+            .style("opacity", 0.9)
+
+    };
+
+    // tooltip mouseout event handler
+    tipMouseoutM() {
+        let vis = this;
+
+        vis.tooltipM.transition()
+            .duration(300) // ms
+            .style("opacity", 0); // don't care about position!
+    };
 }
 
