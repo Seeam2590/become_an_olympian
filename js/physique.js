@@ -194,22 +194,22 @@ class PhysiqueVis {
             .attr("class", "y-axis axis")
             .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
 
-        // vis.linesF = vis.svg.selectAll(".lineF")
-        //     .data(vis.filteredDataF)
-        //     .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
-        // vis.linesF.enter()
-        //     .append("path")
-        //     .attr("class", "lineF")
-        //     .merge(vis.linesF)
-        //     .attr("fill", "none")
-        //     .attr("stroke", "black")
-        //     .attr("stroke-width", 2)
-        //     .attr("d", function(d){
-        //         return d3.line()
-        //             .x(function(d) { return vis.x(+d.year); })
-        //             .y(function(d) { return vis.y(+d.height); })
-        //             (d.value)
-        //     })
+        vis.linesF = vis.svg.selectAll(".lineF")
+            .data(vis.filteredDataF)
+            .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
+        vis.linesF.enter()
+            .append("path")
+            .attr("class", "lineF")
+            .merge(vis.linesF)
+            .attr("fill", "none")
+            .attr("stroke", "#fde0ab")
+            .attr("stroke-width", 2)
+            .attr("d", function(d){
+                return d3.line()
+                    .x(function(d) { return vis.x(+d.year); })
+                    .y(function(d) { return vis.y(+d.height); })
+                    (d.value)
+            });
 
         vis.linesM = vis.svg.selectAll(".lineM")
             .data(vis.filteredDataM)
@@ -219,40 +219,45 @@ class PhysiqueVis {
             .attr("class", "lineM")
             .merge(vis.linesM)
             .attr("fill", "none")
-            .attr("stroke", "black")
+            .attr("stroke", "#b3dbed")
             .attr("stroke-width", 2)
             .attr("d", function(d){
                 return d3.line()
                     .x(function(d) { return vis.x(+d.year); })
                     .y(function(d) { return vis.y(+d.height); })
                     (d.value)
-            })
+            });
 
-        // vis.circlesF = vis.svg.selectAll("circle")
-        //     .data(vis.circleDataF)
-        //     .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
-        // vis.circlesF.enter()
-        //     .append("circle")
-        //     .merge(vis.circlesF)
-        //     .attr("cx", d=>vis.x(+d.year))
-        //     .attr("cy", d=>vis.y(d.height))
-        //     .attr("r", 5);
 
-        vis.circlesM = vis.svg.selectAll("circle")
+        vis.circlesF = vis.svg.selectAll(".circleM")
+            .data(vis.circleDataF)
+            .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
+        vis.circlesF.enter()
+            .append("circle")
+            .attr("class", "circleM")
+            .merge(vis.circlesF)
+            .attr("cx", d=>vis.x(+d.year))
+            .attr("cy", d=>vis.y(d.height))
+            .attr("r", 5)
+            .attr("fill", "#fde0ab");
+
+        vis.circlesM = vis.svg.selectAll(".circleF")
             .data(vis.circleDataM)
             .attr("transform", `translate (${vis.margin.left}, ${vis.margin.top})`);
         vis.circlesM.enter()
             .append("circle")
+            .attr("class", "circleF")
             .merge(vis.circlesM)
             .attr("cx", d=>vis.x(+d.year))
             .attr("cy", d=>vis.y(d.height))
-            .attr("r", 5);
+            .attr("r", 5)
+            .attr("fill", "#b3dbed");
 
 
 
-        //vis.linesF.exit().remove();
+        vis.linesF.exit().remove();
         vis.linesM.exit().remove();
-        //vis.circlesF.exit().remove();
+        vis.circlesF.exit().remove();
         vis.circlesM.exit().remove();
 
 
