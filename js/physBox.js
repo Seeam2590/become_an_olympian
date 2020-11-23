@@ -11,7 +11,7 @@ class PhysBox {
     constructor(parentElement, data) {
         this.parentElement = parentElement;
         this.data = data;
-
+        this.displayData = data
         this.initVis();
     }
 
@@ -97,6 +97,15 @@ class PhysBox {
         let selectBox = document.getElementById("box-y");
         vis.dimension = selectBox.options[selectBox.selectedIndex].value;
 
+        let selectBox2 = document.getElementById("box-sport");
+        vis.sport = selectBox2.options[selectBox2.selectedIndex].value;
+
+        if (vis.sport == "All"){
+            vis.displayData = vis.data
+        } else {
+            vis.displayData = vis.data.filter(function(d){return d.Sport == vis.sport;});
+        }
+
         vis.sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
             .key(function(d) { return d.Sex;})
             .rollup(function(d) {
@@ -108,7 +117,7 @@ class PhysBox {
                 let max = q3 + 1.5 * interQuantileRange
                 return({q1: q1, median: median, q3: q3, interQuantileRange: interQuantileRange, min: min, max: max})
             })
-            .entries(vis.data)
+            .entries(vis.displayData)
 
         vis.updateVis();
     }
@@ -116,7 +125,6 @@ class PhysBox {
         let vis = this;
 
         // Update axis
-        vis.y.domain(d3.extent(vis.data, function(d) { return d[vis.dimension]; }))
         vis.svg.select(".y-axis")
             .transition()
             .duration(500)
@@ -125,10 +133,12 @@ class PhysBox {
         // Updating y-axis label
         if (vis.dimension == "Height"){
             vis.ylabel.text("Height in cm");
+            vis.min = 100
         } else {
             vis.ylabel.text("Weight in kg");
+            vis.min = 0
         }
-
+        vis.y.domain([vis.min, d3.max(vis.displayData, function(d) { return d[vis.dimension]; })])
 
         // Vertical Lines
         vis.vlines = vis.svg
@@ -159,6 +169,7 @@ class PhysBox {
             .selectAll("rect")
             .data(vis.sumstat)
 
+        console.log(vis.sumstat)
         vis.boxes.enter()
             .append("rect")
             .merge(vis.boxes)
@@ -169,7 +180,7 @@ class PhysBox {
             .attr("height", function(d){return(vis.y(d.value.q1)-vis.y(d.value.q3))})
             .attr("width", vis.boxWidth )
             .attr("stroke", "black")
-            .attr("fill", function(d, i){if (i == 0){return "#b3dbed"} else {return "#fde0ab"}})
+            .attr("fill", function(d){if (d.key == "M"){return "#b3dbed"} else {return "#fde0ab"}})
 
         // Exit
         vis.boxes.exit().remove();

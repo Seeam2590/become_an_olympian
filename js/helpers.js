@@ -61,6 +61,14 @@ $("#selectorBox").on("change", function() {
     physiqueVis.updateVis();
 });
 
+$("#line-y").on("change", function() {
+    physiqueVis.wrangleData();
+});
+
 $("#box-y").on("change", function() {
+    physBox.wrangleData();
+});
+
+$("#box-sport").on("change", function() {
     physBox.wrangleData();
 });

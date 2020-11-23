@@ -23,7 +23,6 @@ class PhysiqueVis {
     initVis () {
         let vis = this;
 
-        vis.indepVar = 'Height';
         vis.margin = {top: 10, right: 100, bottom: 40, left: 40};
         vis.width = $('#' + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = $('#' + vis.parentElement).height() - vis.margin.top - vis.margin.bottom;
@@ -38,6 +37,15 @@ class PhysiqueVis {
         vis.y = d3.scaleLinear()
             .range([vis.height-30, 0]);
 
+        // X-axis label
+        vis.svg.append("text")
+            .attr("class", "x label")
+            .attr("text-anchor", "end")
+            .attr("y", 450)
+            .attr("x", 590)
+            .attr("font-size", "12px")
+            .text("Year");
+
         vis.wrangleData();
     }
 
@@ -48,6 +56,10 @@ class PhysiqueVis {
     wrangleData () {
         let vis = this;
         vis.full_olympics = [];
+
+        // Getting the dimensions
+        let selectBox = document.getElementById("line-y");
+        vis.indepVar = selectBox.options[selectBox.selectedIndex].value;
 
         vis.displayData.forEach( row => {
             // and push rows with proper dates into filteredData
