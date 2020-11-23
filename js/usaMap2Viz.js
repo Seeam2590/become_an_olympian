@@ -65,7 +65,7 @@ class UsaMap2Viz {
     wrangleData (d = []) {
         let vis = this;
         if (d.length == 0){
-            vis.bartitle = "United States of America"
+            vis.bartitle = "United States"
             vis.displayData = [{medal: "Bronze", value: 1233, color: "#6a3805"}, {medal: "Silver", value: 1512, color: "#d7d7d7"}, {medal: "Gold", value: 2474, color: "#ffd44a"}]
         }
         else {
