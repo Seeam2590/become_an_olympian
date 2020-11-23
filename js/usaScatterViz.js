@@ -143,7 +143,7 @@ class UsaScatterViz {
             .attr("cx", function (d) { return vis.x(d.athletes); } )
             .attr("cy", function (d) { return vis.y(d.total); } )
             .attr("r", function (d) { return vis.z(d[selectedValue]); } )
-            .style("fill", "#69b3a2")
+            .style("fill", "#b3dbed")
             .style("opacity", "0.7")
 
         // Exit
