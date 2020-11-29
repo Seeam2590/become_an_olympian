@@ -250,6 +250,19 @@ button:focus {
   padding-bottom: 10px
 }
 
+#btn-nav1, #btn-nav2, #btn-nav3 {
+  margin-top: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px
+}
+
+#btn-ff1, #btn-ff2, #btn-ff3 {
+  margin-top: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #ffd44a
+}
+
 input,
 button,
 select,
@@ -2026,9 +2039,8 @@ pre code {
 .form-control:focus {
   color: #495057;
   background-color: #fff;
-  border-color: #b3d1cf;
+  border-color: #ffe8a1;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(100, 161, 157, 0.25);
 }
 .form-control::-moz-placeholder {
   color: #6c757d;
@@ -10278,7 +10290,7 @@ body {
 @media (min-width: 992px) {
   .projects-section .featured-text {
     padding: 0 0 0 2rem;
-    border-left: 0.5rem solid #393939;
+    border-left: 0.5rem solid #ffd44a;
   }
 }
 .projects-section .project-text {

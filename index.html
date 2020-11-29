@@ -6,6 +6,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Become an Olympian</title>
+        <!-- Icons-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
@@ -52,7 +54,10 @@
                     <div class="col-lg-8 mx-auto">
                         <h2 class="text-white mb-4">So you want to be an Olympian?</h2>
                         <p class="text-white-50">
-                            Being an Olympian is one of the coolest and hardest accomplishments out there. In this project, we explore some of the factors you can possibly change to maximize your chances of being an Olympian.
+                            Being an Olympian is one of the coolest and hardest accomplishments out there.
+                            In this project, we explore some of the factors you can possibly change to maximize your chances of being an Olympian.
+                            Scroll & Click the buttons to navigate through the project.
+                        </p>
                     </div>
                 </div>
                 <img class="img-fluid" src="assets/img/medals%20.png" alt="" />
@@ -88,7 +93,7 @@
                                         <h4>USA leads in Olympic Medals</h4>
                                         <p class="text-black-50 mb-0">From 1896 - 2016, USA has won the highest number of Olympic Medals, far higher than any other country. You are more likely to win an Olympic medal from the US than any other country.</p>
                                     </div>
-                                    <button type="button" class="btn btn-primary" id="btn-usa1" onclick="switchView()">Next</button>
+                                    <button type="button" class="btn btn-primary" id="btn-usa1" onclick="switchView()"><i class="fa fa-arrow-right"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +107,7 @@
                                         <h4>USA sends highest no. of Olympians</h4>
                                         <p class="text-black-50 mb-0">If you just want to be an Olympian, being an American is still your best bet since it sends the highest no. of athletes every time. <b>Click on any country to get more details.</b></p>
                                     </div>
-                                    <button type="button" class="btn btn-primary" id="btn-usa2" onclick="switchView()">Next</button>
+                                    <button type="button" class="btn btn-primary" id="btn-usa2" onclick="switchView()"><i class="fa fa-arrow-right"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +130,8 @@
                                         <h4>More Olympians means more Medals</h4>
                                         <p class="text-black-50 mb-0">This visualization helps you explore how different national factors correlate with Olympic medals won and total Olympians. The size of the bubble represents the factor you choose.</p>
                                     </div>
-                                    <button type="button" class="btn btn-primary" id="btn-usa3" onclick="switchView()">To Start</button>
+                                    <button type="button" class="btn btn-primary" id="btn-usa3" onclick="switchView()"><i class="fa fa-redo-alt"></i></button>
+                                    <a class="btn btn-primary js-scroll-trigger" id="btn-nav1" href="#ff1"><i class="fa fa-arrow-down"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +141,7 @@
         </section>
 
         <!-- fact -->
-        <section class="projects-section bg-dark" id="" style="padding: 10px">
+        <section class="projects-section bg-dark" id="ff1" style="padding: 10px">
             <div class="container">
                 <div class="row align-items-center no-gutters mb-4 mb-lg-5">
                     <!-- text -->
@@ -144,6 +150,7 @@
                             <h4  class="text-white mb-4">Tarzan competed in the Olympics.</h4>
                             <p class="text-white-50 mb-0">Johnny Weissmuller, an athlete-turned-actor who played Tarzan in 12 movies, won five gold medals in swimming in the 1920s.</p>
                         </div>
+                        <a class="btn btn-primary js-scroll-trigger" id="btn-ff1" href="#physique"><i class="fa fa-arrow-down"></i></a>
                     </div>
                     <!-- image -->
                     <div class="col-xl-8 col-lg-7" style="height: 70vh">
@@ -245,7 +252,7 @@
                                         <h4>Average Physique hasn't changed much over time.</h4>
                                         <p class="text-black-50 mb-0">The following line charts provide an idea on what sports you should play solely based on your Sex, Height, and Weight</p>
                                     </div>
-                                    <button type="button" class="btn btn-primary" id="btn-usa4" onclick="switchView2()">Next</button>
+                                    <button type="button" class="btn btn-primary" id="btn-usa4" onclick="switchView2()"><i class="fa fa-arrow-right"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -335,7 +342,8 @@
                                         <h4>Explore the ideal Physique</h4>
                                         <p class="text-black-50 mb-0">The box plots show the distribution of height & weight for every Olympian (Male and Female) from 1896 - 2016. The vertical lines represent ranges & horizontal lines represent medians.</p>
                                     </div>
-                                    <button type="button" class="btn btn-primary" id="btn-usa5" onclick="switchView2()">To Start</button>
+                                    <button type="button" class="btn btn-primary" id="btn-usa5" onclick="switchView2()"><i class="fa fa-redo-alt"></i></button>
+                                    <a class="btn btn-primary js-scroll-trigger" id="btn-nav2" href="#ff2"><i class="fa fa-arrow-down"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -345,7 +353,7 @@
         </section>
 
         <!-- fact -->
-        <section class="projects-section bg-dark" id="" style="padding: 10px">
+        <section class="projects-section bg-dark" id="ff2" style="padding: 10px">
             <div class="container">
                 <div class="row align-items-center no-gutters mb-4 mb-lg-5">
                     <!-- text -->
@@ -355,6 +363,7 @@
                             <p class="text-white-50 mb-0">The first Olympic Games to feature female athletes was the 1900 Games in Paris. Hélène de Pourtalès of Switzerland became the first woman to compete at the Olympic Games and became the first female Olympic champion, as a member of the winning team in the first 1 to 2 ton sailing event on May 22, 1900.
                                 Briton Charlotte Cooper became the first female individual champion by winning the women's singles tennis competition on July 11. Tennis and golf were the only sports where women could compete in individual disciplines. 22 women competed at the 1900 Games, 2.2% of all the competitors.</p>
                         </div>
+                        <a class="btn btn-primary js-scroll-trigger" id="btn-ff2" href="#age"><i class="fa fa-arrow-down"></i></a>
                     </div>
                     <!-- image -->
                     <div class="col-xl-4 col-lg-5">
@@ -377,11 +386,6 @@
                     <div class="col-xl-4 col-lg-5">
                             <div class="row justify-content-center">
                                 <div class="align-self-center">
-
-                                    <h3>When do Olympians generally peak?</h3>
-                                    <p class="text-black-50 mb-0">Use the selection options below to explore the typical age an Olympian medalist. This will provide more info on when you can expect to peak in your Athletic Career.</p>
-
-                                    <br><br>
 
                                     <!-- SEX -->
                                     <h6>Sex</h6>
@@ -412,6 +416,12 @@
                                             <input class = "age2" type="radio" name="controlHeatmapType" value="Winter">Winter<br>
                                         </label>
                                     </form>
+                                    <br><br>
+                                    <div class="featured-text text-center text-lg-left">
+                                        <h4>When do Olympians generally peak?</h4>
+                                        <p class="text-black-50 mb-0">Use the selection options above to explore the typical age an Olympian medalist. This will provide more info on when you can expect to peak in your Athletic Career.</p>
+                                    </div>
+                                    <a class="btn btn-primary js-scroll-trigger" id="btn-nav3" href="#ff3"><i class="fa fa-arrow-down"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -421,7 +431,7 @@
         </section>
 
         <!-- fact -->
-        <section class="projects-section bg-dark" id="" style="padding: 10px">
+        <section class="projects-section bg-dark" id="ff3" style="padding: 10px">
             <div class="container">
                 <div class="row align-items-center no-gutters mb-4 mb-lg-5">
                     <!-- text -->
@@ -433,6 +443,7 @@
                                 individual gold medalist in history, while 14-year-old Kusuo Kitamura (swimming) is the youngest
                                 male individual gold medalist.</p>
                         </div>
+                        <a class="btn btn-primary js-scroll-trigger" id="btn-ff3" href="#contact"><i class="fa fa-arrow-down"></i></a>
                     </div>
                     <!-- image -->
                     <div class="col-xl-4 col-lg-5">
@@ -489,15 +500,11 @@
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->
-        <section class="contact-section bg-black">-->
+        <section class="contact-section bg-black">
                 <div class="social d-flex justify-content-center">
                     <a class="mx-2" href="https://github.com/Seeam2590"><i class="fab fa-github"></i></a>
                 </div>
         </section>
-
-
-
-
         <!-- Footer-->
         <footer class="footer bg-black small text-center text-white-50"><div class="container">Copyright © Under the SEA 2020</div></footer>
         <!-- Bootstrap core JS-->
