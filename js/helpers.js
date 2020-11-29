@@ -15,6 +15,10 @@ function switchView(){
     carousel.carousel('next')
 }
 
+function switchView3(){
+    carousel.carousel('prev')
+}
+
 let carousel2 = $('#stateCarousel2');
 
 // prevent rotating
@@ -27,6 +31,9 @@ function switchView2(){
     carousel2.carousel('next')
 }
 
+function switchView4(){
+    carousel2.carousel('prev')
+}
 /* * * * * * * * * * * * * *
 *  Graph interactivity     *
 * * * * * * * * * * * * * */
