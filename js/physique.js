@@ -81,6 +81,40 @@ class PhysiqueVis {
             .attr("class", "tooltip")
             .style("opacity", 0);
 
+        // Legend labels and rectangles for Female
+        vis.svg.append("rect")
+            .attr("x", 500)
+            .attr("y", 0)
+            .attr("width", 30)
+            .attr("height", 20)
+            .style("stroke", '#000')
+            .attr("fill", "#fde0ab");
+
+        // Creating the text for the legend labels
+        vis.svg.append("text")
+            .attr("x", 498)
+            .attr("y", 33)
+            .attr("fill", "#000")
+            .attr("font-size", "9px")
+            .text("Female");
+
+        // Legend labels and rectangles Male
+        vis.svg.append("rect")
+            .attr("x", 560)
+            .attr("y", 0)
+            .attr("width", 30)
+            .attr("height", 20)
+            .style("stroke", '#000')
+            .attr("fill", "#b3dbed");
+
+        // Creating the text for the legend labels
+        vis.svg.append("text")
+            .attr("x", 562)
+            .attr("y", 33)
+            .attr("fill", "#000")
+            .attr("font-size", "9px")
+            .text("Male");
+
         vis.wrangleData();
     }
 

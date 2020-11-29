@@ -124,7 +124,7 @@ class PhysBox {
         // Updating y-axis label
         if (vis.dimension == "Height"){
             vis.ylabel.text("Height in cm");
-            vis.min = 100
+            vis.min = 0
         } else {
             vis.ylabel.text("Weight in kg");
             vis.min = 0
