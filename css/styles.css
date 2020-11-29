@@ -263,6 +263,14 @@ button:focus {
   color: #ffd44a
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
 input,
 button,
 select,
