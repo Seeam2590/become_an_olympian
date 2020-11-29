@@ -154,6 +154,7 @@ class UsaScatterViz {
         // To make the tooltip easier to read
         let vis = this;
         let gdp = parseFloat(d.gdp_per_capita).toFixed(2)
+        if (d.total == 0) { let prop = 0} else {let prop = d.total/d.athletes};
         vis.tooltip.html(`
          <div style="border: thin solid grey; border-radius: 5px; background: white; width: 250px">
              <h5><bold>${d.country}</bold></h5>
@@ -161,6 +162,7 @@ class UsaScatterViz {
              <h6>Population: ${(d.population / 1000000).toFixed(2)}M</h6>
              <h6>GDP/Capita in USD: ${gdp}</h6>
              <h6>Olympians: ${d.athletes}</h6>
+             <h6>Medals per Athlete: ${d.prop.toFixed(2)}</h6>
          </div>`
         )
             .style("left", 445 + "px")

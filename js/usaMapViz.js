@@ -105,6 +105,9 @@ class UsaMapViz {
             d.Silver = +d.Silver;
             d.Gold = +d.Gold;
             d.total = d.Bronze + d.Silver + d.Gold;
+            if (d.total == 0){
+                d.prop = 0
+            } else {d.prop = d.total/d.athletes}
         });
 
         vis.maxAthletes = vis.data.reduce((a,b)=>a.athletes>b.athletes?a:b).athletes;
@@ -123,6 +126,7 @@ class UsaMapViz {
                 d.Gold = info[0].Gold
                 d.Bronze = info[0].Bronze
                 d.Silver = info[0].Silver
+                d.prop = info[0].prop
             } else {
                 d.color = "#fff";
                 d.athletes = 0;
@@ -131,6 +135,7 @@ class UsaMapViz {
                 d.Gold = 0
                 d.Bronze = 0
                 d.Silver = 0
+                d.prop = 0
             }
         });
 
@@ -179,6 +184,7 @@ class UsaMapViz {
              <h5>${d.country}</h5>
              <h6>Olympic Athletes: ${d.athletes}</h6>
              <h6>Total Medals: ${d.total}</h6>
+             <h6>Medals per Athlete: ${d.prop.toFixed(2)}</h6>
              <h6>Click for Medal Breakdown</h6>
          </div>`
         )
