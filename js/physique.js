@@ -362,8 +362,8 @@ class PhysiqueVis {
              <p>Sex: Female</p>
          </div>`
         )
-            .style("left", 270 + "px")
-            .style("top", 150 + "px")
+            .style("left", 40 + "px")
+            .style("top", vis.height - 135 + "px")
             .style("text-align", "center")
             .transition()
             .duration(300) // ms
@@ -391,8 +391,8 @@ class PhysiqueVis {
             
          </div>`
         )
-            .style("left", 270  + "px")
-            .style("top", 150  + "px")
+            .style("left", 40  + "px")
+            .style("top", vis.height - 135  + "px")
             .style("text-align", "center")
             .transition()
             .duration(300) // ms
