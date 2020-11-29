@@ -357,7 +357,7 @@ class PhysiqueVis {
         vis.tooltipF.html(`
          <div style="border: thin solid grey; border-radius: 5px; background: white; width: 250px">
              <h5><bold>${d.year}</bold></h5>
-             <p>Average ${vis.parameter}: ${d.indepVar} cm</p>
+             <p>Average ${vis.parameter}: ${+d.indepVar.toFixed(2)} cm</p>
              <p>Sport: ${d.sport}</p>
              <p>Sex: Female</p>
          </div>`
@@ -385,8 +385,8 @@ class PhysiqueVis {
         vis.tooltipM.html(`
          <div style="border: thin solid grey; border-radius: 5px; background: white; width: 250px">
              <h5><bold>${d.year}</bold></h5>
-             <p>Average ${vis.parameter}: ${d.indepVar} cm</p>
-             <p>Sport: ${d.indepVar}</p>
+             <p>Average ${vis.parameter}: ${+d.indepVar.toFixed(2)} cm</p>
+             <p>Sport: ${d.sport}</p>
              <p>Sex: Male</p>
             
          </div>`
