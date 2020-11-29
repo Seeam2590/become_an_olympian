@@ -256,6 +256,11 @@ button:focus {
   padding-bottom: 10px
 }
 
+#btn-nav4 {
+  padding-top: 10px;
+  padding-bottom: 10px
+}
+
 #btn-ff1, #btn-ff2, #btn-ff3 {
   margin-top: 30px;
   padding-top: 10px;
