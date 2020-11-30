@@ -9939,6 +9939,11 @@ button.bg-black:focus {
   color: #fff !important;
 }
 
+.text-white-background {
+  color: #fff !important;
+  background-color: dimgrey;
+}
+
 .text-primary {
   color: #393939 !important;
 }
@@ -10379,4 +10384,11 @@ body {
 
 .footer {
   padding: 5rem 0;
+}
+
+/* Bottom right text */
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
 }
