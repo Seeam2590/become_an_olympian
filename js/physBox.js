@@ -166,7 +166,6 @@ class PhysBox {
             .selectAll("rect")
             .data(vis.sumstat)
 
-        console.log(vis.sumstat)
         vis.boxes.enter()
             .append("rect")
             .merge(vis.boxes)

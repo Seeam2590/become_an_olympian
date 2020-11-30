@@ -250,7 +250,7 @@ button:focus {
   padding-bottom: 10px
 }
 
-#btn-nav1, #btn-nav2, #btn-nav3 {
+#btn-nav1, #btn-nav2, #btn-nav3, #btn-nav5 {
   margin-top: 30px;
   padding-top: 10px;
   padding-bottom: 10px
@@ -261,7 +261,7 @@ button:focus {
   padding-bottom: 10px
 }
 
-#btn-ff1, #btn-ff2, #btn-ff3 {
+#btn-ff1, #btn-ff2, #btn-ff3, #btn-ff4 {
   margin-top: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
