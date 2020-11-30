@@ -1,4 +1,4 @@
-# Become an Olympuan
+# Become an Olympian
 ## CS 171 - Visualization, Fall 2020
 ### Final Project of Team Under the SEA 
 Members: Annabelle Paterson, Emma Freeman, Seeam Noor
