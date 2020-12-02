@@ -117,6 +117,8 @@ class UsaScatterViz {
         // Setting the domains for different possibilities
         vis.z.domain(d3.extent(vis.data, function(d) { return d[selectedValue]; }))
 
+        vis.data = vis.data.sort((a, b) => b[selectedValue] - a[selectedValue]);
+
         // Add dots
         vis.dots = vis.svg
             .selectAll("circle")
