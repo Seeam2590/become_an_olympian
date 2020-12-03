@@ -14,7 +14,7 @@ Visit the project live at: https://seeam2590.github.io/become_an_olympian/
 2. Run the index.html file on any JavaScript IDE. We used [Webstorm](https://www.jetbrains.com/webstorm/).
 
 ### Repository Structure
-Description of the folders and files in the repository are below:
+Descriptions of the folders and files in the repository are below:
 1. assets: This folder contains the images we used in different parts of our website.
 2. css: This folder contains the css code required to style our website using a base Bootstrap template.
 3. data: This folder contains the process data files that we used for our project. More information on the data sources can be found on the project website. There is also a jupyter notebook that we used to clean one complicated data set to make it easier to visualize.
