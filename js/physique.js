@@ -354,10 +354,12 @@ class PhysiqueVis {
         // To make the tooltip easier to read
         let vis = this;
 
+        if (vis.parameter == "Weight"){vis.unit = "kg"} else {vis.unit = "cm"}
+
         vis.tooltipF.html(`
          <div style="border: thin solid grey; border-radius: 5px; background: white; width: 250px">
              <h5><bold>${d.year}</bold></h5>
-             <p>Average ${vis.parameter}: ${+d.indepVar.toFixed(2)} cm</p>
+             <p>Average ${vis.parameter}: ${+d.indepVar.toFixed(2)} ${vis.unit}</p>
              <p>Sport: ${d.sport}</p>
              <p>Sex: Female</p>
          </div>`
