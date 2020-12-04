@@ -57,7 +57,7 @@ class PhysiqueVis {
         vis.svg.append("text")
             .attr("class", "x label")
             .attr("text-anchor", "end")
-            .attr("y", 467)
+            .attr("y", 490)
             .attr("x", 590)
             .attr("font-size", "12px")
             .text("Year");
