@@ -230,9 +230,14 @@ class PhysiqueVis {
         vis.filteredDataM = vis.groupedDataM.filter(function(d){return d.key === vis.selectValue} );
         vis.circleDataM = vis.HeightBySportNiceM.filter(function(d){return d.sport === vis.selectValue})
 
+        vis.maxM = vis.circleDataM.sort((a,b) => d3.descending(+a.indepVar, +b.indepVar))[0];
+        vis.minM = vis.circleDataM.sort((a,b) => d3.ascending(+a.indepVar, +b.indepVar))[0];
+        vis.maxF = vis.circleDataF.sort((a,b) => d3.descending(+a.indepVar, +b.indepVar))[0];
+        vis.minF = vis.circleDataF.sort((a,b) => d3.ascending(+a.indepVar, +b.indepVar))[0];
+
 
         vis.x.domain([d3.min(vis.HeightBySportNice, d=>+d.year) - 5, d3.max(vis.HeightBySportNice, d=>+d.year)+ 10])
-        vis.y.domain([0, maximumVal + 20])
+        vis.y.domain([0, vis.maxM.indepVar + 15])
 
         // Update axis
         vis.svg.select(".x-axis")
@@ -362,11 +367,18 @@ class PhysiqueVis {
              <p>Average ${vis.parameter}: ${+d.indepVar.toFixed(2)} ${vis.unit}</p>
              <p>Sport: ${d.sport}</p>
              <p>Sex: Female</p>
+             <p>Maximum ${vis.parameter}: ${vis.maxF.indepVar.toFixed(2)} ${vis.unit} (${vis.maxF.year})</p>
+             <p>Minimum ${vis.parameter}: ${vis.minF.indepVar.toFixed(2)} ${vis.unit} (${vis.minF.year})</p>
+             <p>Difference: ${(vis.maxF.indepVar - vis.minF.indepVar).toFixed(2)} ${vis.unit} </p>
          </div>`
         )
             .style("left", 45 + "px")
-            .style("top", vis.height - 135 + "px")
+            .style("top", vis.height - 190 + "px")
             .style("text-align", "center")
+            .style("font-size", 11 + "px")
+            .style("line-height", 11 + "px")
+            .style("margin", 0 + "px")
+            .style("padding", 0 + "px")
             .transition()
             .duration(300) // ms
             .style("opacity", 0.9)
@@ -387,15 +399,21 @@ class PhysiqueVis {
         vis.tooltipM.html(`
          <div style="border: thin solid grey; border-radius: 5px; background: white; width: 250px">
              <h5><bold>${d.year}</bold></h5>
-             <p>Average ${vis.parameter}: ${+d.indepVar.toFixed(2)} cm</p>
+             <p>Average ${vis.parameter}: ${+d.indepVar.toFixed(2)} ${vis.unit}</p>
              <p>Sport: ${d.sport}</p>
              <p>Sex: Male</p>
-            
+             <p>Maximum ${vis.parameter}: ${vis.maxM.indepVar.toFixed(2)} ${vis.unit} (${vis.maxM.year})</p>
+             <p>Minimum ${vis.parameter}: ${vis.minM.indepVar.toFixed(2)} ${vis.unit} (${vis.minM.year})</p>
+             <p>Difference: ${(vis.maxM.indepVar - vis.minM.indepVar).toFixed(2)} ${vis.unit}</p>
          </div>`
         )
-            .style("left", 45  + "px")
-            .style("top", vis.height - 135  + "px")
+            .style("left", 45 + "px")
+            .style("top", vis.height - 190 + "px")
             .style("text-align", "center")
+            .style("font-size", 11 + "px")
+            .style("line-height", 11 + "px")
+            .style("margin", 0 + "px")
+            .style("padding", 0 + "px")
             .transition()
             .duration(300) // ms
             .style("opacity", 0.9)
