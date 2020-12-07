@@ -80,7 +80,7 @@ $("#box-sport").on("change", function() {
     physBox.wrangleData();
 });
 
-
+// Button for the physique line plot key insights
 i = 0;
 function pickOutput() {
     let insights = ["Bobsleigh has the greatest variance in weight, an astonishing 75 kg. These values, however, are skewed due to the low number of competitors with recorded weights in early years of the event. In general, Men’s Bobsleigh competitors weigh on average 91.94 kg, which makes them the fourth heaviest athletes on average (behind Basketball, Tug-Of-War, and Rugby Sevens). This is because additional weight tends to make the bobsleds move at a greater speed, the goal of the event.",
@@ -101,4 +101,15 @@ function pickOutput() {
     else{i++;}
 
     $("#modalText").html(`<p>${randinsights}</p>`)
+}
+
+function pickOutput2(){
+    let insight = "# Sport: Gold + Silver + Bronze = Total<br>" +
+        " 1. Athletics: 335 + 260 + 207 = 802<br>" +
+        " 2. Swimming: 246 + 172 + 135 = 553<br>" +
+        " 3. Wrestling: 54 + 43 + 36 = 133<br>" +
+        " 4. Shooting: 54 + 29 + 27 = 110<br>" +
+        " 5. Boxing: 50 + 24 + 40 = 114"
+
+    $("#modalText2").html(`<p>${insight}</p>`)
 }
