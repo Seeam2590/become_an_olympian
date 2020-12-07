@@ -54,8 +54,8 @@ class UsaScatterViz {
         vis.svg.append("text")
             .attr("class", "x label")
             .attr("text-anchor", "end")
-            .attr("y", 470)
-            .attr("x", 580)
+            .attr("y", 465)
+            .attr("x", 585)
             .attr("font-size", "12px")
             .text("Total Olympians");
 

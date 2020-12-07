@@ -54,8 +54,8 @@ class PhysBox {
         vis.svg.append("text")
             .attr("class", "x label")
             .attr("text-anchor", "end")
-            .attr("y", 495)
-            .attr("x", 540)
+            .attr("y", 470)
+            .attr("x", 570)
             .attr("font-size", "12px")
             .text("Sex");
 
