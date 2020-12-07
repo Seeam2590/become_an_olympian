@@ -79,6 +79,8 @@ $("#box-y").on("change", function() {
 $("#box-sport").on("change", function() {
     physBox.wrangleData();
 });
+
+
 i = 0;
 function pickOutput() {
     let insights = ["Bobsleigh has the greatest variance in weight, an astonishing 75 kg. These values, however, are skewed due to the low number of competitors with recorded weights in early years of the event. In general, Men’s Bobsleigh competitors weigh on average 91.94 kg, which makes them the fourth heaviest athletes on average (behind Basketball, Tug-Of-War, and Rugby Sevens). This is because additional weight tends to make the bobsleds move at a greater speed, the goal of the event.",
