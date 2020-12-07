@@ -237,7 +237,7 @@ class PhysiqueVis {
 
 
         vis.x.domain([d3.min(vis.HeightBySportNice, d=>+d.year) - 5, d3.max(vis.HeightBySportNice, d=>+d.year)+ 10])
-        vis.y.domain([0, vis.maxM.indepVar + 15])
+        vis.y.domain([0, vis.maxM.indepVar + 30])
 
         // Update axis
         vis.svg.select(".x-axis")
